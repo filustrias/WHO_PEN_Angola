@@ -1,0 +1,164 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/source-sans-3';
+import '../styles/global.css';
+import '../styles/componentes.scss';
+import { SECCOES, caminho, entradaDaSeccao, paginasOrdenadas } from '../navegacao';
+
+interface Props {
+  titulo: string;
+  descricao?: string;
+  secao?: string;
+  rota?: string; // rota da página actual, para anterior/seguinte
+  inicio?: boolean;
+}
+const { titulo, descricao = 'Ciência da implementação do WHO PEN nos cuidados primários em Angola', secao, rota, inicio = false } = Astro.props;
+
+const menu = await Promise.all(SECCOES.map(async (s) => ({ ...s, rota: await entradaDaSeccao(s.id) })));
+const ordem = await paginasOrdenadas();
+const i = rota ? ordem.findIndex((p) => p.rota === rota) : -1;
+const anterior = i > 0 ? ordem[i - 1] : undefined;
+const seguinte = i >= 0 && i < ordem.length - 1 ? ordem[i + 1] : undefined;
+const tituloCompleto = inicio ? 'PEN Angola' : `${titulo} · PEN Angola`;
+---
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descricao} />
+    <link rel="icon" href={caminho('favicon.svg')} type="image/svg+xml" />
+    <script is:inline>
+      // Aplica o tema guardado antes de a página aparecer, para não piscar
+      try {
+        const t = localStorage.getItem('tema');
+        if (t === 'claro' || t === 'escuro') document.documentElement.dataset.theme = t === 'claro' ? 'light' : 'dark';
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+    <header class="topo">
+      <div class="topo-dentro">
+        <a class="marca" href={caminho()}>
+          <svg class="marca-simbolo" viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="9" cy="9" r="4" /><circle cx="23" cy="9" r="4" /><circle cx="9" cy="23" r="4" /><circle cx="23" cy="23" r="4" class="destaque" />
+          </svg>
+          <span>PEN Angola</span>
+        </a>
+        <nav class="menu" aria-label="Secções">
+          <ul>
+            {menu.map((s) => (
+              <li>
+                <a href={caminho(s.rota)} aria-current={secao === s.id ? 'page' : undefined}>{s.rotulo}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <button class="tema" type="button" aria-label="Mudar para o tema escuro">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icone-lua"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" /></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icone-sol"><circle cx="12" cy="12" r="4.5" /><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="conteudo" tabindex="-1">
+      <slot />
+    </main>
+
+    {(anterior || seguinte) && (
+      <nav class="passos" aria-label="Páginas anterior e seguinte">
+        {anterior ? (
+          <a class="passo passo-anterior" href={caminho(anterior.rota)}><small>Anterior</small><span>{anterior.titulo}</span></a>
+        ) : <span />}
+        {seguinte && (
+          <a class="passo passo-seguinte" href={caminho(seguinte.rota)}><small>Seguinte</small><span>{seguinte.titulo}</span></a>
+        )}
+      </nav>
+    )}
+
+    <footer class="rodape">
+      <p>PEN Angola · Adelson Guaraci Jantsch · Documento de trabalho em construção</p>
+    </footer>
+
+    <script>
+      // Botão claro/escuro
+      const botao = document.querySelector<HTMLButtonElement>('.tema');
+      const raiz = document.documentElement;
+      const escuroAgora = () =>
+        raiz.dataset.theme ? raiz.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      const rotular = () => botao?.setAttribute('aria-label', escuroAgora() ? 'Mudar para o tema claro' : 'Mudar para o tema escuro');
+      rotular();
+      botao?.addEventListener('click', () => {
+        const escuro = !escuroAgora();
+        raiz.dataset.theme = escuro ? 'dark' : 'light';
+        try { localStorage.setItem('tema', escuro ? 'escuro' : 'claro'); } catch (e) {}
+        rotular();
+      });
+
+      // Abas: cada título dentro de .panel-tabset passa a ser um separador
+      document.querySelectorAll<HTMLElement>('.panel-tabset').forEach((caixa, n) => {
+        const nivel = caixa.querySelector('h2, h3, h4, h5')?.tagName;
+        if (!nivel) return;
+        const grupos: { titulo: string; nos: Node[] }[] = [];
+        for (const no of Array.from(caixa.childNodes)) {
+          if (no instanceof HTMLElement && no.tagName === nivel) grupos.push({ titulo: no.textContent ?? '', nos: [] });
+          else if (grupos.length) grupos[grupos.length - 1].nos.push(no);
+        }
+        caixa.textContent = '';
+        const lista = document.createElement('div');
+        lista.className = 'abas-lista';
+        lista.setAttribute('role', 'tablist');
+        caixa.append(lista);
+        const botoes: HTMLButtonElement[] = [];
+        const paineis: HTMLElement[] = [];
+        grupos.forEach((g, k) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'aba';
+          b.id = `aba-${n}-${k}`;
+          b.textContent = g.titulo;
+          b.setAttribute('role', 'tab');
+          b.setAttribute('aria-controls', `painel-${n}-${k}`);
+          const p = document.createElement('div');
+          p.className = 'aba-painel';
+          p.id = `painel-${n}-${k}`;
+          p.setAttribute('role', 'tabpanel');
+          p.setAttribute('aria-labelledby', b.id);
+          p.tabIndex = 0;
+          p.append(...g.nos);
+          lista.append(b);
+          caixa.append(p);
+          botoes.push(b);
+          paineis.push(p);
+        });
+        const escolher = (k: number, focar = false) => {
+          botoes.forEach((b, j) => {
+            b.setAttribute('aria-selected', String(j === k));
+            b.tabIndex = j === k ? 0 : -1;
+            paineis[j].hidden = j !== k;
+          });
+          if (focar) botoes[k].focus();
+        };
+        botoes.forEach((b, k) => {
+          b.addEventListener('click', () => escolher(k));
+          b.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') escolher((k + 1) % botoes.length, true);
+            if (e.key === 'ArrowLeft') escolher((k - 1 + botoes.length) % botoes.length, true);
+          });
+        });
+        escolher(0);
+      });
+
+      // Diagramas Mermaid: a biblioteca só é descarregada quando a página tem um
+      if (document.querySelector('pre.mermaid')) {
+        import('mermaid').then(async ({ default: mermaid }) => {
+          const escuro = raiz.dataset.theme ? raiz.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          mermaid.initialize({ startOnLoad: false, theme: escuro ? 'dark' : 'neutral', fontFamily: 'Source Sans 3 Variable, sans-serif' });
+          await mermaid.run({ querySelector: 'pre.mermaid' });
+        });
+      }
+    </script>
+  </body>
+</html>

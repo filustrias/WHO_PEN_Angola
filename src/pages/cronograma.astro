@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { ESTADOS, cronograma, mesDeIndice, mesIndice, nomeMes, periodo } from '../dados';
+
+const fases = cronograma();
+const inicioEixo = Math.min(...fases.map((f) => mesIndice(f.inicio)));
+const fimDados = Math.max(...fases.map((f) => mesIndice(f.fim)));
+// O eixo mostra pelo menos 12 meses, para se ver o espaço das fases ainda por definir
+const fimEixo = Math.max(fimDados, inicioEixo + 11);
+const meses = Array.from({ length: fimEixo - inicioEixo + 1 }, (_, k) => mesDeIndice(inicioEixo + k));
+const coluna = (am: string) => mesIndice(am) - inicioEixo + 1;
+const temFuturo = fimEixo > fimDados;
+const [anoIni, mesIni] = mesDeIndice(inicioEixo).split('-').map(Number);
+const [anoFim, mesFim] = mesDeIndice(fimEixo + 1).split('-').map(Number);
+---
+<Base titulo="Cronograma" descricao="Fases, actividades e estado do projecto PEN Angola." secao="cronograma" rota="cronograma/">
+  <header class="cabecalho cor-ocre">
+    <div class="cabecalho-dentro">
+      <p class="sobretitulo">Cronograma</p>
+      <h1>Onde estamos e o que vem a seguir</h1>
+      <p class="subtitulo">As fases do PEN Angola, com as actividades e o estado de cada uma. O cronograma está a ser construído em conjunto e vai crescer fase a fase.</p>
+    </div>
+  </header>
+
+  <div class="pagina">
+    <section class="linha-tempo" aria-label="Linha do tempo"
+      data-inicio={`${anoIni}-${String(mesIni).padStart(2, '0')}-01`}
+      data-fim={`${anoFim}-${String(mesFim).padStart(2, '0')}-01`}>
+      <div class="lt-grelha" style={`--meses:${meses.length}`}>
+        <div class="lt-meses" aria-hidden="true">
+          {meses.map((m) => (
+            <span class:list={['lt-mes', { 'lt-ano': m.endsWith('-01') || m === meses[0] }]}>
+              {nomeMes(m, true)}{(m.endsWith('-01') || m === meses[0]) && <small>{m.slice(0, 4)}</small>}
+            </span>
+          ))}
+        </div>
+        {fases.map((f, k) => (
+          <a class={`lt-fase lt-cor-${k % 4}`} href={`#fase-${k}`}
+            style={`grid-column:${coluna(f.inicio)} / ${coluna(f.fim) + 1}`}>
+            <strong>{f.nome}</strong>
+            <span>{periodo(f.inicio, f.fim)}</span>
+          </a>
+        ))}
+        {temFuturo && (
+          <div class="lt-futuro" style={`grid-column:${coluna(mesDeIndice(fimDados + 1))} / -1`}>
+            <span>Próximas fases: a definir em conjunto</span>
+          </div>
+        )}
+        <div class="lt-hoje" hidden><span>Hoje</span></div>
+      </div>
+    </section>
+
+    <div class="legenda-estados" aria-label="Estados">
+      {Object.entries(ESTADOS).map(([k, v]) => <span class={`estado estado-${k}`}>{v}</span>)}
+    </div>
+
+    {fases.map((f, k) => (
+      <section class="fase" id={`fase-${k}`}>
+        <div class="fase-topo">
+          <h2>{f.nome}</h2>
+          <p class="fase-periodo">{periodo(f.inicio, f.fim)}</p>
+        </div>
+        <ol class="actividades">
+          {f.actividades.map((a) => (
+            <li class="actividade">
+              <div>
+                <p class="actividade-nome">{a.actividade}</p>
+                {a.notas && <p class="actividade-notas">{a.notas}</p>}
+                {(a.inicio !== f.inicio || a.fim !== f.fim) && <p class="actividade-notas">{periodo(a.inicio, a.fim)}</p>}
+              </div>
+              <span class={`estado estado-${a.estado}`}>{ESTADOS[a.estado]}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+
+  </div>
+</Base>
+
+<script>
+  // Marcador "Hoje" na linha do tempo, calculado no navegador para estar sempre actual
+  const lt = document.querySelector<HTMLElement>('.linha-tempo');
+  const hoje = lt?.querySelector<HTMLElement>('.lt-hoje');
+  if (lt && hoje) {
+    const ini = new Date(lt.dataset.inicio + 'T00:00:00').getTime();
+    const fim = new Date(lt.dataset.fim + 'T00:00:00').getTime();
+    const agora = Date.now();
+    if (agora >= ini && agora < fim) {
+      hoje.style.left = `${((agora - ini) / (fim - ini)) * 100}%`;
+      hoje.hidden = false;
+    }
+  }
+</script>

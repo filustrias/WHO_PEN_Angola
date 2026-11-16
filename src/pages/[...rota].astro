@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SECCOES, caminho, paginasOrdenadas } from '../navegacao';
+
+export async function getStaticPaths() {
+  const paginas = await getCollection('paginas');
+  return paginas.map((pagina) => ({
+    params: { rota: pagina.data.rota.replace(/^\/+|\/+$/g, '') },
+    props: { pagina },
+  }));
+}
+
+const { pagina } = Astro.props;
+const { Content, headings } = await render(pagina);
+const d = pagina.data;
+const seccao = SECCOES.find((s) => s.id === d.secao);
+const irmas = (await paginasOrdenadas()).filter((p) => p.secao === d.secao);
+const indice = headings.filter((h) => h.depth === 2);
+---
+<Base titulo={d.titulo} descricao={d.resumo} secao={d.secao} rota={d.rota}>
+  <header class={`cabecalho cor-${seccao?.cor ?? 'petroleo'}`}>
+    <div class="cabecalho-dentro">
+      {seccao && <p class="sobretitulo">{seccao.rotulo}</p>}
+      <h1>{d.titulo}</h1>
+      {d.subtitulo && <p class="subtitulo">{d.subtitulo}</p>}
+      {irmas.length > 1 && (
+        <nav class="irmas" aria-label={`Páginas da secção ${seccao?.rotulo ?? ''}`}>
+          {irmas.map((p) => (
+            <a href={caminho(p.rota)} aria-current={p.rota === d.rota ? 'page' : undefined}>{p.titulo}</a>
+          ))}
+        </nav>
+      )}
+    </div>
+  </header>
+
+  <div class={indice.length >= 3 ? 'pagina com-indice' : 'pagina'}>
+    {indice.length >= 3 && (
+      <aside class="indice" aria-label="Nesta página">
+        <p>Nesta página</p>
+        <ul>
+          {indice.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+        </ul>
+      </aside>
+    )}
+    <article class="prosa">
+      <Content />
+    </article>
+  </div>
+</Base>

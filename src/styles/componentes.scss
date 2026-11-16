@@ -1,0 +1,5 @@
+// Estilos dos componentes interactivos vindos do livro (RE-AIM e CFIR).
+// _reaim.scss e _cfir.scss são cópias de quarto_book/estilos/ (a fonte passou a var(--fonte-texto));
+// as variáveis --pen-* e --bs-* que usam estão definidas em global.css.
+@use 'componentes/reaim';
+@use 'componentes/cfir';

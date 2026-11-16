@@ -1,0 +1,63 @@
+---
+titulo: "Preparativos"
+subtitulo: "Âmbito, financiamento e frentes de trabalho do PEN Angola"
+resumo: "As duas iniciativas, o financiamento, o objectivo e as frentes de trabalho."
+secao: "projecto"
+ordem: 1
+rota: "projecto/"
+id: "sec-preparativos"
+origem: "preparativos.qmd"
+---
+
+<!-- Importado de quarto_book/preparativos.qmd. Pode editar aqui; não é preciso voltar ao livro. -->
+
+## Duas iniciativas agrupadas
+
+O trabalho em Angola reúne duas iniciativas da OMS, cada uma com financiamento próprio para o país:
+
+| Iniciativa | Financiamento para Angola |
+|:---|:---|
+| WHO PEN | 70 mil dólares |
+| PEN-Plus | 50 mil dólares anuais (à partida) |
+
+: Financiamento das duas iniciativas {#tbl-financiamento}
+
+## Objectivo
+
+Ajudar os países que ainda não têm serviços de saúde disponíveis nem preparados para atender as doenças crónicas não transmissíveis a passar a tê-los. Esses serviços devem estar integrados no sistema de saúde e centrados nas necessidades das pessoas.
+
+## Tópicos de trabalho
+
+### Construção das guias clínicas
+
+@sec-lacunas propõe construir as guias a partir das lacunas de cuidado. Isso facilita a criação dos indicadores de resultado.
+
+A construção será feita de forma contínua ao longo do tempo. As guias amadurecem à medida que o trabalho acontece, em iterações progressivas de aprendizagem, desenvolvimento e implementação. Farmacêuticos, enfermeiros e gestores estão a ser convidados a participar no desenvolvimento das guias.
+
+### Digitalização das guias clínicas
+
+Não teremos um livro publicado. Teremos informação digitalizada, para uso imediato no ponto de cuidado, com um canal para comunicar sugestões.
+
+### Formação continuada dos profissionais envolvidos
+
+Não haverá uma capacitação pontual. Haverá uma aprendizagem continuada, diária e perene.
+
+### Digitalização dos dados no ponto de cuidado
+
+O trabalho com a nova edição do mapa sanitário já é o primeiro passo para chegarmos ao registo de informação dos pacientes no ponto de cuidado (*point-of-care*).
+
+### Selecção das províncias e unidades sanitárias
+
+Ocorrerá nas próximas semanas, com as direcções provinciais.
+
+### Lista de materiais, insumos e estrutura necessária
+
+Ocorrerá nas próximas semanas, com as direcções provinciais.
+
+### Ciência da implementação
+
+Os enquadramentos estão em @sec-enquadramentos e @sec-desenho. A ciência da implementação será a estrutura científica de fundo deste projecto. Esperamos que se torne um legado para a gestão local, o que precisa do envolvimento das universidades.
+
+### Envolvimento com universidades
+
+Produção científica e actividades de extensão universitária.

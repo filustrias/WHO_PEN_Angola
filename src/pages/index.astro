@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import { SECCOES, caminho, paginasOrdenadas } from '../navegacao';
+import { ESTADOS, cronograma, periodo } from '../dados';
+
+const paginas = await paginasOrdenadas();
+const seccoes = SECCOES.map((s) => ({ ...s, paginas: paginas.filter((p) => p.secao === s.id) }));
+
+const fases = cronograma();
+const faseActual = fases[fases.length - 1];
+const contagem = faseActual.actividades.reduce<Record<string, number>>((acc, a) => ({ ...acc, [a.estado]: (acc[a.estado] ?? 0) + 1 }), {});
+
+// 100 pontos: a ilustração do topo. Cada ponto é uma pessoa; os destacados são as que o cuidado alcança.
+const pontos = Array.from({ length: 100 }, (_, k) => ({ x: (k % 10) * 26 + 13, y: Math.floor(k / 10) * 26 + 13, k }));
+const destaque = new Set([3, 14, 15, 22, 26, 31, 37, 43, 48, 52, 55, 58, 61, 64, 67, 73, 76, 81, 85, 88, 94]);
+---
+<Base titulo="Início" inicio>
+  <section class="heroi">
+    <div class="heroi-dentro">
+      <div class="heroi-texto">
+        <p class="sobretitulo">WHO PEN · PEN-Plus · Angola</p>
+        <h1>Levar o que funciona até quem precisa</h1>
+        <p class="heroi-lead">Ciência da implementação do pacote de intervenções essenciais para doenças não transmissíveis da OMS nos cuidados primários em Angola.</p>
+        <div class="heroi-accoes">
+          <a class="botao botao-cheio" href={caminho('projecto/')}>Conhecer o projecto</a>
+          <a class="botao" href={caminho('cronograma/')}>Ver o cronograma</a>
+        </div>
+      </div>
+      <svg class="heroi-arte" viewBox="0 0 260 260" role="img" aria-label="Cem pontos, alguns destacados: uma população e as pessoas que o cuidado alcança">
+        {pontos.map((p) => (
+          <circle cx={p.x} cy={p.y} r="8" class={destaque.has(p.k) ? 'ponto ponto-destaque' : 'ponto'} style={`--atraso:${(p.k % 10) * 40 + Math.floor(p.k / 10) * 25}ms`} />
+        ))}
+      </svg>
+    </div>
+  </section>
+
+  <div class="inicio">
+    <section class="faixa-numeros" aria-label="As duas iniciativas">
+      <div class="numero cor-terracota">
+        <p class="numero-rotulo">WHO PEN</p>
+        <p class="numero-valor">70 mil <small>USD</small></p>
+        <p class="numero-texto">Pacote de intervenções essenciais para DNT nos cuidados primários</p>
+      </div>
+      <div class="numero cor-petroleo">
+        <p class="numero-rotulo">PEN-Plus</p>
+        <p class="numero-valor">50 mil <small>USD/ano</small></p>
+        <p class="numero-texto">DNT graves nos hospitais de primeira referência (valor à partida)</p>
+      </div>
+      <a class="numero numero-agora cor-ocre" href={caminho('cronograma/')}>
+        <p class="numero-rotulo">Agora</p>
+        <p class="numero-valor numero-valor-texto">{faseActual.nome}</p>
+        <p class="numero-texto">{periodo(faseActual.inicio, faseActual.fim)} · {faseActual.actividades.length} actividades
+          {Object.entries(contagem).map(([k, n]) => <span class={`estado estado-${k}`}>{n} {ESTADOS[k as keyof typeof ESTADOS].toLowerCase()}</span>)}
+        </p>
+      </a>
+    </section>
+
+    <section class="intro-texto">
+      <p>Este site reúne os documentos de trabalho do estudo sobre a implementação do WHO PEN em Angola: o âmbito do projecto e o seu cronograma, a ciência da implementação que o sustenta, o RE-AIM e o CFIR aplicados ao PEN, a evidência sobre o pacote e a proposta de construir os protocolos a partir das lacunas de cuidado.</p>
+    </section>
+
+    <section class="cartoes" aria-label="Secções">
+      {seccoes.map((s) => (
+        <article class={`cartao cor-${s.cor}`}>
+          <h2><a href={caminho(s.paginas[0]?.rota ?? '')}>{s.rotulo}</a></h2>
+          <p>{s.descricao}</p>
+          {s.paginas.length > 1 && (
+            <ul>
+              {s.paginas.map((p) => <li><a href={caminho(p.rota)}>{p.titulo}</a></li>)}
+            </ul>
+          )}
+        </article>
+      ))}
+    </section>
+  </div>
+</Base>

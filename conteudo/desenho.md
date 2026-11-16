@@ -1,0 +1,153 @@
+---
+titulo: "A inovação PEN: desenhar com o CFIR, implementar com o RE-AIM"
+subtitulo: "Elementos a ter em conta na implementação do WHO PEN em Angola"
+resumo: "Desenhar a inovação PEN com o CFIR e planear a implementação com o RE-AIM."
+secao: "implementacao"
+ordem: 3
+rota: "implementacao/desenho/"
+id: "sec-desenho"
+origem: "cfir-reaim-desenho-pen.qmd"
+---
+
+<!-- Importado de quarto_book/cfir-reaim-desenho-pen.qmd. Pode editar aqui; não é preciso voltar ao livro. -->
+
+## O que é uma "inovação"
+
+Em saúde, uma inovação é qualquer ferramenta, instrumento, tecnologia ou formação introduzida num contexto onde nunca tinha sido introduzida. Pode já ter sido implementada noutro lugar: é uma inovação no contexto específico onde vai ser implementada. Por isso, a mesma ferramenta pode ser rotina numa unidade sanitária e inovação na unidade vizinha.
+
+Dentro de qualquer inovação distinguem-se duas partes: o **núcleo** (*core components*), com os elementos que devem estar presentes, e a **periferia adaptável** (*adaptable periphery*), com os elementos que podem mudar conforme o contexto.
+
+### Núcleo e periferia do PEN Angola
+
+::: {.columns}
+::: {.column width="48%"}
+**Núcleo — deve estar presente**
+
+- Protocolos clínicos: hipertensão, diabetes tipo 2, risco cardiovascular total, asma/DPOC
+- Lista de medicamentos e equipamentos essenciais
+- Cuidado prestado por equipa multiprofissional
+- Cadastramento de utentes, registos individuais de encontros clínicos e acompanhamento longitudinal
+:::
+::: {.column width="4%"}
+:::
+::: {.column width="48%"}
+**Periferia — adaptável**
+
+- Quem faz o quê em cada unidade
+- Frequência das consultas de seguimento
+- Formato do registo (papel, DHIS2)
+- Materiais de educação ao utente
+- Forma e periodicidade da supervisão
+:::
+:::
+
+::: {.callout-exemplo}
+<div class="titulo">Porque importa</div>
+*O WHO PEN apresenta flexibilidade para que seja adaptado de formas distintas a depender de cada contexto.*
+:::
+
+## Como o CFIR refina a inovação
+
+O domínio *Inovação* do CFIR 2022 tem oito constructos ([Damschroder et al., 2022](https://doi.org/10.1186/s13012-022-01245-0)). Cada um é, na prática, uma pergunta de desenho a fazer antes de implementar.
+
+| Constructo | Pergunta para o PEN Angola | Implicação de desenho |
+|:---|:---|:---|
+| **Fonte** | Quem é visto como "dono" do PEN — a OMS, o MINSA, o projecto? | Se for visto como imposição externa, a adopção sofre. Idealmente o MINSA assina o pacote adaptado. |
+| **Base de evidência** | A evidência convence os clínicos angolanos? | Apresentar NNT, RRA e graus de recomendação para cada intervenção, não apenas "a OMS recomenda". |
+| **Vantagem relativa** | O que ganha a unidade face ao que faz hoje? | Tornar visível: menos retornos sem resolução, menos referências ao hospital, dados para a direcção. |
+| **Adaptabilidade** | O que pode mudar sem perder efeito? | É exactamente a lista núcleo/periferia acima. |
+| **Testabilidade** | Pode experimentar-se em pequena escala e recuar? | Começar por uma condição (HTA) numa unidade; depois alargar. |
+| **Complexidade** | Quantos passos, pessoas e decisões envolve? | Simplificar o fluxograma; o fluxograma interactivo do projecto serve para reduzir a complexidade percebida. |
+| **Desenho** | O material está bem feito, utilizável, em português angolano? | Protocolos de uma página, algoritmos visuais, fichas que cabem no tempo da consulta. |
+| **Custo** | Quanto custa à unidade, ao utente, ao sistema? | Custo recorrente de tiras e medicamentos; se o utente paga, o alcance cai. |
+
+: Os oito constructos do domínio Inovação aplicados ao PEN {.tabela-compacta}
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo — base de evidência</div>
+*Tratar a hipertensão em pessoas de risco cardiovascular baixo tem um NNT da ordem das centenas em cinco anos para prevenir um AVC; em pessoas de risco alto, o NNT cai para dezenas. É por isso que o PEN organiza o tratamento pelo risco total e não só pelo valor da tensão — e é este argumento, em números absolutos, que convence o clínico.*
+:::
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo — refinar antes de implementar</div>
+*Se o diagnóstico CFIR mostrar que as unidades têm tensiómetro mas não glucómetro, o desenho da inovação na primeira fase pode ser "PEN-HTA com rastreio de diabetes por sintomas e referência", e não o pacote completo. Isto é refinar a inovação com o CFIR: ajustar o pacote ao contexto antes de o implementar, não depois de falhar.*
+:::
+
+## Como o RE-AIM organiza o planeamento, a implementação e a manutenção
+
+O [RE-AIM](https://re-aim.org/) entra quando a inovação já está definida. A regra é simples: **cada dimensão vira uma meta, uma fonte de dados e uma estratégia — antes de começar.**
+
+### Alcance — planeamento
+
+Definir a população elegível (adultos com 40 anos ou mais na área da unidade? todos os utentes com TA ≥ 140/90 mmHg?), a meta e como chegar a quem não vem à unidade.
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo</div>
+*Meta: 60 % dos adultos elegíveis rastreados em 12 meses. Estratégias: rastreio oportunista em todas as consultas (não só na "consulta de crónicos") e envolvimento dos agentes comunitários para os homens, que raramente procuram a unidade.*
+:::
+
+### Efectividade — planeamento
+
+Fixar os desfechos em medidas absolutas e a fonte de dados. Decidir desde já se haverá comparação — unidades com e sem PEN, ou antes/depois.
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo</div>
+*Desfecho primário: proporção de hipertensos com TA < 140/90 mmHg aos 12 meses, retirada do registo de crónicos. Reportar a redução absoluta do risco e o NNT estimado, não apenas a proporção controlada.*
+:::
+
+### Adopção — implementação
+
+Escolher as unidades e saber quem recusa e porquê. Envolver o médico-chefe municipal. Começar pelos *early adopters* e usar o seu exemplo com os restantes.
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo</div>
+*Das 30 unidades de uma província, 8 iniciam o PEN no primeiro semestre. As 22 restantes não são "falhas": são a amostra que diz quais os obstáculos à adopção (sem enfermeiro, sem medicamentos, sem interesse da direcção) e o que mudar antes de alargar.*
+:::
+
+### Implementação — implementação
+
+Formar, supervisionar, medir fidelidade, registar adaptações e custos. Aqui entram as estratégias que o diagnóstico CFIR apontou.
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo</div>
+*Se a barreira identificada era "falta de tempo na consulta", a estratégia é reorganizar o fluxo — triagem com medição de TA antes da consulta — e não mais formação. Formar de novo quem já sabe mas não tem tempo é a estratégia errada para a barreira certa.*
+:::
+
+### Manutenção — desde o início
+
+O que acontece quando o financiamento externo acabar? A resposta é de desenho, não de esperança.
+
+- PEN inscrito nas normas do MINSA
+- Indicadores de DNT no DHIS2 de rotina
+- Supervisão feita pela direcção municipal, não pelo projecto
+- Medicamentos do PEN na lista nacional de aprovisionamento
+- Dois profissionais formados por unidade, protocolo afixado, não dependente de uma pessoa
+
+::: {.callout-exemplo}
+<div class="titulo">Exemplo</div>
+*Uma unidade pode ter alcance alto e efectividade boa aos 12 meses e, aos 24, ter perdido tudo porque o único enfermeiro formado foi transferido. O RE-AIM obriga a planear a manutenção enquanto se planeia o resto.*
+:::
+
+## Síntese
+
+O CFIR desenha a inovação certa para o contexto; o RE-AIM garante que ela chega às pessoas certas, funciona, é adoptada, é feita como previsto e dura. **Os dois usam-se antes de começar**, não só para explicar o que aconteceu.
+
+| Momento | Enquadramento | Pergunta |
+|:---|:---|:---|
+| Antes de implementar | CFIR (domínio Inovação) | O pacote está certo para este contexto? |
+| Ao planear | RE-AIM | A quem chega, com que efeito, quem o adopta, como se faz, como dura? |
+| Ao implementar | RE-AIM + estratégias do CFIR | Estamos a cumprir as metas? Que adaptações estão a ser feitas? |
+| Ao terminar o apoio externo | RE-AIM (manutenção) | O que fica sem o projecto? |
+
+: Quando usar cada enquadramento {.tabela-compacta}
+
+## Referências {.unnumbered}
+
+- Damschroder LJ, Reardon CM, Widerquist MAO, Lowery J. The updated Consolidated Framework for Implementation Research based on user feedback. *Implement Sci*. 2022;17:75. <https://doi.org/10.1186/s13012-022-01245-0>
+- Glasgow RE, Harden SM, Gaglio B, et al. RE-AIM planning and evaluation framework: adapting to new science and practice with a 20-year review. *Front Public Health*. 2019;7:64. <https://doi.org/10.3389/fpubh.2019.00064>
+- World Health Organization. *WHO package of essential noncommunicable (PEN) disease interventions for primary health care*. Geneva: WHO; 2020. <https://www.who.int/publications/i/item/9789240009226> · PDF: <https://www.knowledge-action-portal.com/sites/default/files/2025-03/WHO%20PEN%20package%20of%20essential%20NCD%20interventions%202021.pdf>
+- Sítios de referência: [re-aim.org](https://re-aim.org/) · [cfirguide.org/constructs](https://cfirguide.org/constructs/)
+
+::: {.callout-warning appearance="minimal"}
+Referências e valores de NNT citados de memória; confirmar antes de uso formal.
+:::
