@@ -18,16 +18,16 @@ export interface Seccao {
 export const SECCOES: Seccao[] = [
   { id: 'projecto', rotulo: 'Projecto', cor: 'terracota',
     descricao: 'Âmbito, financiamento e frentes de trabalho.' },
-  { id: 'cronograma', rotulo: 'Cronograma', cor: 'ocre',
-    descricao: 'Onde estamos e o que vem a seguir.' },
+  { id: 'calendario', rotulo: 'Calendário', cor: 'ocre',
+    descricao: 'O calendário conjunto WHO PEN e PEN-Plus, de Outubro de 2026 a Outubro de 2027.' },
   { id: 'ciencia', rotulo: 'Ciência da implementação', cor: 'petroleo',
     descricao: 'Inovação, investigação de implementação e os enquadramentos.' },
   { id: 'implementacao', rotulo: 'RE-AIM e CFIR', cor: 'savana',
     descricao: 'Os dois enquadramentos aplicados ao PEN, com simuladores e exercícios.' },
   { id: 'evidencia', rotulo: 'Evidência', cor: 'petroleo',
     descricao: 'Literatura sobre o PEN e mapa de guias e materiais.' },
-  { id: 'lacunas', rotulo: 'Lacunas de cuidado', cor: 'terracota',
-    descricao: 'Da guia clínica ao indicador no piloto.' },
+  { id: 'lacunas', rotulo: 'Protocolos e seguimento', cor: 'terracota',
+    descricao: 'Das lacunas de cuidado aos protocolos clínicos e ao seguimento dos utentes.' },
 ];
 
 export interface ItemPagina {
@@ -39,7 +39,7 @@ export interface ItemPagina {
 
 /** Páginas que não vêm do Markdown (são ficheiros .astro próprios). */
 const PAGINAS_PROPRIAS: ItemPagina[] = [
-  { titulo: 'Cronograma', rota: 'cronograma/', secao: 'cronograma', resumo: 'Fases, actividades e estado do projecto.' },
+  { titulo: 'Calendário', rota: 'calendario/', secao: 'calendario', resumo: 'O calendário conjunto WHO PEN e PEN-Plus, quinzena a quinzena.' },
 ];
 
 /** Todas as páginas pela ordem de leitura: secção, depois campo "ordem". */

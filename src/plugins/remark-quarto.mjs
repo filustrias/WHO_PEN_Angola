@@ -85,7 +85,7 @@ function preprocessar(fonte, base, mapas) {
 
     // Diagrama Mermaid: o texto vai escapado para dentro de <pre class="mermaid">,
     // e o layout carrega o Mermaid só nas páginas que o usam
-    if (/^```\{mermaid\}\s*$/.test(linha)) {
+    if (/^```\s*(\{mermaid\}|mermaid)\s*$/.test(linha)) {
       const corpo = [];
       let legendaFig = '';
       for (i++; i < linhas.length && !/^```\s*$/.test(linhas[i]); i++) {

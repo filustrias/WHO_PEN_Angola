@@ -1,0 +1,114 @@
+/* Página do calendário conjunto (src/pages/calendario.astro) */
+
+.cal-chaves { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+.chave {
+  padding: 1.1rem 1.2rem; border-radius: var(--raio); background: var(--superficie);
+  border: 1px solid var(--linha); border-top: 5px solid var(--cor);
+}
+.chave h2 { margin: 0 0 .4rem; font-size: 1.1rem; color: var(--cor); }
+.chave p, .chave ol { margin: 0; font-size: .93rem; line-height: 1.5; }
+.chave ol { padding-left: 1.2rem; }
+.chave li { margin: .15rem 0; }
+@media (max-width: 1000px) { .cal-chaves { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .cal-chaves { grid-template-columns: 1fr; } }
+
+/* Linha do tempo */
+.lt-faixa-rotulo { grid-column: 1 / -1; margin: .6rem 0 0; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-suave); }
+.lt-fase-fina { min-height: 3.2rem; }
+/* Etapas de um só mês: só o nome, sem partir a palavra */
+.lt-curta { padding: .5rem .45rem; overflow-wrap: normal; }
+.lt-curta strong { font-size: .82rem; }
+.lt-curta span { display: none; }
+.lt-fase-fina span { font-size: .78rem; }
+.lt-mes { white-space: nowrap; }
+.lt-marcos { position: relative; height: 1.4rem; }
+.lt-marco {
+  position: absolute; top: .2rem; width: 1rem; height: 1rem; transform: rotate(45deg);
+  background: var(--ocre-vivo); border: 2px solid var(--superficie); border-radius: 3px; box-shadow: 0 0 0 1px var(--ocre);
+}
+.lt-marco:hover, .lt-marco:focus-visible { background: var(--terracota); }
+
+/* Barra de filtros */
+.cal-barra { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin: 2rem 0 1rem; }
+.cal-filtros { display: flex; flex-wrap: wrap; gap: .3rem; }
+.cal-filtros button {
+  padding: .45rem .9rem; border-radius: 999px; border: 1px solid var(--linha); background: var(--superficie);
+  color: var(--tinta-suave); font: 600 .9rem var(--fonte-texto); cursor: pointer;
+}
+.cal-filtros button:hover { border-color: var(--petroleo); color: var(--tinta); }
+.cal-filtros button[aria-pressed="true"] { background: var(--petroleo); border-color: var(--petroleo); color: var(--superficie); }
+.cal-agora-ir { font-weight: 700; color: var(--terracota); }
+.cal-agora-ir[hidden] { display: none; }
+.cal-contagem { margin: 0 0 0 auto; color: var(--tinta-suave); font-size: .9rem; }
+
+/* Grelha: data | WHO PEN | PEN-Plus */
+.calendario { --cols: 10.5rem minmax(0, 1fr) minmax(0, 1fr); }
+.cal-cabecalho, .cal-periodo { display: grid; grid-template-columns: var(--cols); gap: 0 1.5rem; }
+.cal-cabecalho {
+  position: sticky; top: 3.6rem; z-index: 5; padding: .7rem 0 .6rem;
+  background: var(--papel); border-bottom: 2px solid var(--tinta);
+  font-family: var(--fonte-titulos); font-weight: 600; font-size: 1.1rem;
+}
+.cal-cabecalho small { display: block; font-family: var(--fonte-texto); font-size: .8rem; font-weight: 600; color: var(--tinta-suave); }
+.cal-col-pen { --pacote: var(--petroleo); }
+.cal-col-plus { --pacote: var(--terracota); }
+.cal-cabecalho .cal-col-pen, .cal-cabecalho .cal-col-plus { color: var(--pacote); }
+
+.cal-periodo { padding: 1.1rem 0; border-bottom: 1px solid var(--linha); scroll-margin-top: 8rem; }
+.cal-data p { margin: 0; }
+.cal-mes { font-family: var(--fonte-titulos); font-size: 1.2rem; font-weight: 600; line-height: 1.2; }
+.cal-mes span { color: var(--tinta-suave); font-weight: 500; }
+.cal-quinzena { font-size: .88rem; color: var(--tinta-suave); font-weight: 600; }
+.cal-etapa, .cal-agora-marca {
+  display: inline-block; margin-top: .45rem !important; padding: .05rem .55rem; border-radius: 999px;
+  font-size: .74rem; font-weight: 700;
+}
+.cal-etapa { background: var(--ocre-claro); color: var(--ocre); }
+.cal-agora-marca { margin-left: .3rem !important; background: var(--terracota); color: var(--superficie); }
+.cal-agora-marca[hidden] { display: none; }
+.cal-periodo.agora {
+  margin: 0 -.8rem; padding-left: .8rem; padding-right: .8rem; border-radius: var(--raio);
+  background: linear-gradient(90deg, var(--terracota-claro), transparent 75%);
+}
+
+.cal-coluna { min-width: 0; }
+.cal-coluna-nome { display: none; margin: 0 0 .3rem; font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--pacote); }
+.cal-coluna ul { list-style: none; margin: 0; padding: 0; }
+.cal-coluna li { position: relative; margin: 0 0 .5rem; padding-left: 1rem; line-height: 1.45; font-size: .95rem; }
+.cal-coluna li::before {
+  content: ""; position: absolute; left: 0; top: .55em; width: .45rem; height: .45rem; border-radius: 50%; background: var(--pacote);
+}
+.cal-coluna li.realizado::before { background: var(--savana); }
+.cal-vazio { margin: 0; font-size: .9rem; color: var(--tinta-suave); font-style: italic; }
+.etiqueta { display: inline-block; margin-left: .35rem; padding: 0 .45rem; border-radius: 999px; font-size: .72rem; font-weight: 700; vertical-align: .1em; white-space: nowrap; }
+.etiqueta-realizado { background: var(--savana-claro); color: var(--savana); }
+.etiqueta-conjunta { background: var(--petroleo-claro); color: var(--petroleo); }
+
+.cal-marcos {
+  position: relative; grid-column: 2 / -1; margin-top: .6rem; padding: .7rem 1rem .7rem 2.6rem;
+  border-radius: 12px; background: var(--ocre-claro); border: 1px solid color-mix(in srgb, var(--ocre) 35%, transparent);
+}
+.cal-marcos::before {
+  content: ""; position: absolute; left: 1rem; top: 1rem; width: .8rem; height: .8rem; transform: rotate(45deg);
+  background: var(--ocre-vivo); border-radius: 2px;
+}
+.cal-marcos-titulo { margin: 0 0 .15rem; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ocre); }
+.cal-marcos ul { margin: 0; padding: 0; list-style: none; }
+.cal-marcos li { margin: .1rem 0; font-weight: 600; font-size: .95rem; }
+
+/* Filtros */
+.calendario[data-filtro="pen"], .calendario[data-filtro="plus"], .calendario[data-filtro="marcos"] { --cols: 10.5rem minmax(0, 1fr); }
+.calendario[data-filtro="pen"] .cal-col-plus, .calendario[data-filtro="plus"] .cal-col-pen { display: none; }
+.calendario[data-filtro="marcos"] .cal-coluna, .calendario[data-filtro="marcos"] .cal-cabecalho { display: none; }
+.calendario[data-filtro="marcos"] .cal-periodo:not(.com-marcos) { display: none; }
+.calendario[data-filtro="marcos"] .cal-marcos { grid-column: 2; margin-top: 0; }
+
+@media (max-width: 760px) {
+  .calendario, .calendario[data-filtro] { --cols: minmax(0, 1fr); }
+  .cal-cabecalho { display: none; }
+  .cal-coluna-nome { display: block; }
+  .cal-data { margin-bottom: .6rem; }
+  .cal-coluna + .cal-coluna { margin-top: .8rem; }
+  .cal-marcos, .calendario[data-filtro="marcos"] .cal-marcos { grid-column: 1; }
+  .cal-contagem { margin-left: 0; }
+}

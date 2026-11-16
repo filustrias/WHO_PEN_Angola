@@ -29,12 +29,19 @@ const PAGINAS = [
     resumo: 'Guias clínicas e materiais didácticos e de comunicação sobre hipertensão, diabetes e risco cardiovascular.' },
   { origem: 'lacunas-de-cuidado-pen-angola.qmd', ficheiro: 'lacunas.md', rota: 'lacunas/', secao: 'lacunas', ordem: 1,
     resumo: 'Construir os protocolos e os indicadores do piloto a partir das lacunas de cuidado.' },
+  { origem: 'producao-protocolos-clinicos.md', pasta: '..', ficheiro: 'protocolos.md', rota: 'protocolos/', secao: 'lacunas', ordem: 2,
+    resumo: 'As duas etapas de produção, quem participa, os componentes de cada protocolo e a forma de disponibilização.' },
+  { origem: 'seguimento-coorte-dcnt-pen-angola.md', pasta: '..', ficheiro: 'seguimento.md', rota: 'seguimento/', secao: 'lacunas', ordem: 3,
+    subtitulo: 'Documento de trabalho para discussão · versão 0.1, 16 de Novembro de 2026',
+    limpar: [/^\*\*Projecto PEN Angola[^\n]*\n(?:Versão[^\n]*\n)?\s*---\s*\n/m],
+    resumo: 'Coorte de rotina, avaliação do serviço e investigação de métodos mistos, alinhadas com o RE-AIM, o PRISM e o CFIR.' },
 ];
 
 const yaml = (v) => (typeof v === 'number' ? String(v) : JSON.stringify(v));
 
 function importar(p) {
-  let texto = fs.readFileSync(path.join(LIVRO, p.origem), 'utf8').replace(/\r\n/g, '\n');
+  const pasta = p.pasta ? path.resolve(p.pasta) : LIVRO;
+  let texto = fs.readFileSync(path.join(pasta, p.origem), 'utf8').replace(/\r\n/g, '\n');
   texto = texto.replace(/^---\n[\s\S]*?\n---\n+/, ''); // frontmatter antigo, se houver
 
   const h1 = texto.match(/^# (.+?)\s*(?:\{([^}]*)\})?\s*$/m);
@@ -43,7 +50,8 @@ function importar(p) {
   const id = h1[2]?.match(/#([\w-]+)/)?.[1];
   texto = texto.replace(h1[0], '');
 
-  let subtitulo;
+  let subtitulo = p.subtitulo;
+  for (const r of p.limpar ?? []) texto = texto.replace(r, '');
   texto = texto.replace(/^::: ?\{\.chapter-subtitle\}\n([\s\S]*?)\n:::\n/m, (_, s) => {
     subtitulo = s.trim();
     return '';
@@ -55,7 +63,7 @@ function importar(p) {
     .map(([k, v]) => `${k}: ${yaml(v)}`)
     .join('\n');
 
-  const nota = `<!-- Importado de quarto_book/${p.origem}. Pode editar aqui; não é preciso voltar ao livro. -->`;
+  const nota = `<!-- Importado de ${p.pasta ? '' : 'quarto_book/'}${p.origem}. Pode editar aqui; não é preciso voltar à origem. -->`;
   fs.writeFileSync(path.join(DESTINO, p.ficheiro), `---\n${cabecalho}\n---\n\n${nota}\n\n${texto.trim()}\n`);
   console.log(`${p.origem} → conteudo/${p.ficheiro}`);
 }

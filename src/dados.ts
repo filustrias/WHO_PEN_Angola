@@ -28,46 +28,75 @@ export function lerCsv(nome: string): Record<string, string>[] {
   return resto.map((l) => Object.fromEntries(cabecalho.map((k, j) => [k.trim(), (l[j] ?? '').trim()])));
 }
 
-export type Estado = 'concluido' | 'em-curso' | 'por-fazer' | 'a-confirmar';
+const MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+const MESES_CURTOS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
-export const ESTADOS: Record<Estado, string> = {
-  concluido: 'Concluído',
-  'em-curso': 'Em curso',
-  'por-fazer': 'Por fazer',
-  'a-confirmar': 'A confirmar',
-};
-
-export interface Actividade { actividade: string; inicio: string; fim: string; estado: Estado; notas: string }
-export interface Fase { nome: string; inicio: string; fim: string; actividades: Actividade[] }
-
-/** Agrupa as linhas de dados/cronograma.csv por fase, pela ordem em que aparecem. */
-export function cronograma(): Fase[] {
-  const fases: Fase[] = [];
-  for (const l of lerCsv('cronograma.csv')) {
-    let f = fases.find((x) => x.nome === l.fase);
-    if (!f) { f = { nome: l.fase, inicio: l.inicio, fim: l.fim, actividades: [] }; fases.push(f); }
-    const estado = (l.estado in ESTADOS ? l.estado : 'a-confirmar') as Estado;
-    f.actividades.push({ actividade: l.actividade, inicio: l.inicio, fim: l.fim, estado, notas: l.notas });
-    if (l.inicio < f.inicio) f.inicio = l.inicio;
-    if (l.fim > f.fim) f.fim = l.fim;
-  }
-  return fases;
+/**
+ * Períodos do calendário: "2026-10" (mês inteiro) ou "2026-11-1" / "2026-11-2" (quinzena).
+ * Para fazer contas, cada período ocupa uma ou duas "meias" (quinzenas) num eixo contínuo.
+ */
+export interface Periodo {
+  codigo: string;
+  ano: number;
+  mes: number; // 1–12
+  quinzena: 0 | 1 | 2; // 0 = mês inteiro
+  meiaInicio: number; // índice da primeira quinzena
+  meiaFim: number; // índice da última quinzena (inclusive)
+  inicio: string; // data ISO do primeiro dia
+  fim: string; // data ISO do dia seguinte ao último
 }
 
-const MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+export function periodo(codigo: string): Periodo {
+  const [a, m, q] = codigo.split('-').map(Number);
+  const quinzena = (q === 1 || q === 2 ? q : 0) as 0 | 1 | 2;
+  const base = (a * 12 + (m - 1)) * 2;
+  const meiaInicio = quinzena === 2 ? base + 1 : base;
+  const meiaFim = quinzena === 1 ? base : base + 1;
+  return { codigo, ano: a, mes: m, quinzena, meiaInicio, meiaFim, inicio: dataDaMeia(meiaInicio), fim: dataDaMeia(meiaFim + 1) };
+}
 
-/** "2026-10" → índice absoluto de mês, para fazer contas. */
-export const mesIndice = (am: string) => { const [a, m] = am.split('-').map(Number); return a * 12 + (m - 1); };
-export const mesDeIndice = (i: number) => `${Math.floor(i / 12)}-${String((i % 12) + 1).padStart(2, '0')}`;
-export const nomeMes = (am: string, curto = false) => {
-  const [a, m] = am.split('-').map(Number);
-  const n = MESES[m - 1];
-  return curto ? n.slice(0, 3) : `${n} de ${a}`;
-};
-/** "Outubro a Novembro de 2026" ou "Outubro de 2026 a Março de 2027" */
-export function periodo(inicio: string, fim: string): string {
-  if (inicio === fim) return nomeMes(inicio);
-  const [ai] = inicio.split('-');
-  const [af] = fim.split('-');
-  return ai === af ? `${nomeMes(inicio).split(' de ')[0]} a ${nomeMes(fim)}` : `${nomeMes(inicio)} a ${nomeMes(fim)}`;
+/** Data ISO em que começa uma quinzena do eixo (dia 1 ou dia 16). */
+export function dataDaMeia(meia: number): string {
+  const mesAbs = Math.floor(meia / 2);
+  const a = Math.floor(mesAbs / 12);
+  const m = (mesAbs % 12) + 1;
+  return `${a}-${String(m).padStart(2, '0')}-${meia % 2 ? '16' : '01'}`;
+}
+
+export const nomeMes = (mes: number, curto = false) => (curto ? MESES_CURTOS : MESES)[mes - 1];
+
+/** "Novembro de 2026 · 1.ª quinzena" ou "Junho de 2027" */
+export function rotuloPeriodo(p: Periodo, curto = false): string {
+  const mes = curto ? `${nomeMes(p.mes, true)} ${p.ano}` : `${nomeMes(p.mes)} de ${p.ano}`;
+  return p.quinzena ? `${mes} · ${p.quinzena}.ª ${curto ? 'q' : 'quinzena'}` : mes;
+}
+
+export interface Actividade { texto: string; realizado: boolean; conjunta: boolean }
+export interface LinhaCalendario { periodo: Periodo; pen: Actividade[]; plus: Actividade[]; marcos: string[] }
+
+/** dados/calendario.csv agrupado por período, pela ordem do ficheiro. */
+export function calendario(): LinhaCalendario[] {
+  const linhas: LinhaCalendario[] = [];
+  for (const l of lerCsv('calendario.csv')) {
+    let linha = linhas.find((x) => x.periodo.codigo === l.periodo);
+    if (!linha) { linha = { periodo: periodo(l.periodo), pen: [], plus: [], marcos: [] }; linhas.push(linha); }
+    const a = { texto: l.texto, realizado: l.realizado === 'sim', conjunta: l.conjunta === 'sim' };
+    if (l.pacote === 'pen') linha.pen.push(a);
+    else if (l.pacote === 'plus') linha.plus.push(a);
+    else if (l.pacote === 'marco') linha.marcos.push(l.texto);
+  }
+  return linhas;
+}
+
+export interface Etapa { nome: string; faixa: 'etapa' | 'pesquisa'; inicio: Periodo; fim: Periodo; descricao: string }
+
+/** dados/etapas.csv: as etapas do projecto e as fases da pesquisa de implementação. */
+export function etapas(): Etapa[] {
+  return lerCsv('etapas.csv').map((l) => ({
+    nome: l.nome,
+    faixa: l.faixa === 'pesquisa' ? 'pesquisa' : 'etapa',
+    inicio: periodo(l.inicio),
+    fim: periodo(l.fim),
+    descricao: l.descricao,
+  }));
 }

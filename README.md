@@ -18,9 +18,10 @@ Requer Node 22.22 ou superior.
 | Pasta ou ficheiro | O que tem |
 | --- | --- |
 | `conteudo/*.md` | Uma página por ficheiro. Frontmatter: `titulo`, `subtitulo`, `resumo`, `secao`, `ordem`, `rota`, `id` |
-| `dados/cronograma.csv` | O cronograma: uma linha por actividade |
+| `dados/calendario.csv` | O calendário conjunto: uma linha por actividade ou marco (gerado da planilha) |
+| `dados/etapas.csv` | Etapas e fases da pesquisa de implementação, para a linha do tempo |
 | `src/navegacao.ts` | Ordem e nomes das secções do menu |
-| `src/pages/` | Página inicial, cronograma e o gerador das páginas de `conteudo/` |
+| `src/pages/` | Página inicial, calendário e o gerador das páginas de `conteudo/` |
 | `src/plugins/` | Leitura da sintaxe do Quarto, secções especiais e tabelas |
 | `src/styles/global.css` | Paleta, temas claro e escuro, tipografia |
 | `src/styles/componentes/` | Estilos dos componentes RE-AIM e CFIR (vindos do livro) |
@@ -33,7 +34,7 @@ Os ficheiros aceitam Markdown normal e também a sintaxe do Quarto usada no livr
 - caixas: `::: {.callout-note}` … `:::`, `::: {.callout-exemplo}`, colunas, abas (`::: {.panel-tabset}`);
 - etiquetas: `[texto]{.classe}`;
 - HTML embutido: ```` ```{=html} ````;
-- diagramas: ```` ```{mermaid} ````;
+- diagramas: ```` ```{mermaid} ```` ou ```` ```mermaid ````;
 - ligações para outras páginas: `@sec-reaim`, ou `[texto](reaim.qmd)`.
 
 Secções especiais:
@@ -44,11 +45,15 @@ Secções especiais:
 
 Para trazer de novo um capítulo do livro: `npm run importar reaim.qmd` (atenção: substitui o ficheiro em `conteudo/`).
 
-## Cronograma
+## Calendário
 
-`dados/cronograma.csv` tem as colunas `fase, actividade, inicio, fim, estado, notas`.
-Datas em ano-mês (`2026-10`). Estados: `concluido`, `em-curso`, `por-fazer`, `a-confirmar`.
-A página agrupa as linhas por fase, pela ordem do ficheiro.
+A fonte é a planilha `Calendário conjunto WHO PEN e PEN-Plus Angola (…).xlsx`, na pasta acima.
+Depois de a alterar, correr `python scripts/importar-calendario.py` para gerar `dados/calendario.csv`.
+
+- Cada linha "•" de uma célula vira uma actividade; "(realizado)" e "(conjunta)" passam a etiquetas.
+- Os marcos, separados por ";", aparecem em destaque e na linha do tempo.
+- Períodos: `2026-10` (mês) ou `2026-11-1` / `2026-11-2` (1.ª e 2.ª quinzena).
+- As faixas da linha do tempo (etapas e pesquisa de implementação) estão em `dados/etapas.csv`.
 
 ## Publicação
 
