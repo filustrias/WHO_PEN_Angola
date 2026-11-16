@@ -9,7 +9,7 @@ const seccoes = SECCOES.map((s) => ({ ...s, paginas: paginas.filter((p) => p.sec
 // Marcos do calendário, com datas, para o cartão "Próximo marco" (escolhido no navegador)
 const marcos = calendario().flatMap((l) => l.marcos.map((m) => ({ texto: m, quando: rotuloPeriodo(l.periodo, true), fim: l.periodo.fim, id: l.periodo.codigo })));
 
-// 100 pontos: a ilustração do topo. Cada ponto é uma pessoa; os destacados são as que o cuidado alcança.
+// Ilustração do topo: grelha de 100 pontos
 const pontos = Array.from({ length: 100 }, (_, k) => ({ x: (k % 10) * 26 + 13, y: Math.floor(k / 10) * 26 + 13, k }));
 const destaque = new Set([3, 14, 15, 22, 26, 31, 37, 43, 48, 52, 55, 58, 61, 64, 67, 73, 76, 81, 85, 88, 94]);
 ---
@@ -18,14 +18,13 @@ const destaque = new Set([3, 14, 15, 22, 26, 31, 37, 43, 48, 52, 55, 58, 61, 64,
     <div class="heroi-dentro">
       <div class="heroi-texto">
         <p class="sobretitulo">WHO PEN · PEN-Plus · Angola</p>
-        <h1>Levar o que funciona até quem precisa</h1>
-        <p class="heroi-lead">Ciência da implementação do pacote de intervenções essenciais para doenças não transmissíveis da OMS nos cuidados primários em Angola.</p>
+        <h1>Implementação de pacote essencial de cuidados de pessoas com condições crónicas em Angola</h1>
         <div class="heroi-accoes">
           <a class="botao botao-cheio" href={caminho('projecto/')}>Conhecer o projecto</a>
           <a class="botao" href={caminho('calendario/')}>Ver o calendário</a>
         </div>
       </div>
-      <svg class="heroi-arte" viewBox="0 0 260 260" role="img" aria-label="Cem pontos, alguns destacados: uma população e as pessoas que o cuidado alcança">
+      <svg class="heroi-arte" viewBox="0 0 260 260" role="img" aria-label="Ilustração: grelha de cem pontos">
         {pontos.map((p) => (
           <circle cx={p.x} cy={p.y} r="8" class={destaque.has(p.k) ? 'ponto ponto-destaque' : 'ponto'} style={`--atraso:${(p.k % 10) * 40 + Math.floor(p.k / 10) * 25}ms`} />
         ))}

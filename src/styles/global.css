@@ -311,7 +311,7 @@ tbody tr:hover td { background: color-mix(in srgb, var(--petroleo-claro) 45%, tr
   max-width: var(--largura-site); margin: 0 auto; padding: 4rem 1.25rem 3.5rem;
   display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3rem; align-items: center;
 }
-.heroi h1 { margin: 0; font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.05; max-width: 14ch; }
+.heroi h1 { margin: 0; font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.15; max-width: 26ch; }
 .heroi-lead { margin: 1.2rem 0 0; max-width: 36rem; font-size: 1.25rem; line-height: 1.5; color: var(--tinta-suave); }
 .heroi-accoes { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
 .botao {
