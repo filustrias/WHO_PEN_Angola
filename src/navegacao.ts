@@ -18,6 +18,8 @@ export interface Seccao {
 export const SECCOES: Seccao[] = [
   { id: 'projecto', rotulo: 'Projecto', cor: 'terracota',
     descricao: 'Âmbito, financiamento e frentes de trabalho.' },
+  { id: 'estrutura', rotulo: 'Estrutura', cor: 'petroleo',
+    descricao: 'Níveis de atenção, fluxo de pacientes, PCDT e participação dos atores.' },
   { id: 'calendario', rotulo: 'Calendário', cor: 'ocre',
     descricao: 'O calendário conjunto WHO PEN e PEN-Plus, de Outubro de 2026 a Outubro de 2027.' },
   { id: 'ciencia', rotulo: 'Ciência da implementação', cor: 'petroleo',
@@ -39,6 +41,7 @@ export interface ItemPagina {
 
 /** Páginas que não vêm do Markdown (são ficheiros .astro próprios). */
 const PAGINAS_PROPRIAS: ItemPagina[] = [
+  { titulo: 'Estrutura do projecto', rota: 'estrutura/', secao: 'estrutura', resumo: 'Níveis de atenção, fluxo de pacientes, PCDT e participação dos atores.' },
   { titulo: 'Calendário', rota: 'calendario/', secao: 'calendario', resumo: 'O calendário conjunto WHO PEN e PEN-Plus, quinzena a quinzena.' },
 ];
 

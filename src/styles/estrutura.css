@@ -1,0 +1,130 @@
+/* Página da estrutura do projecto (src/pages/estrutura.astro) */
+
+.so-definicoes { position: absolute; width: 0; height: 0; overflow: hidden; }
+.est-bloco { margin-bottom: 3.5rem; }
+.est-bloco > h2 { margin: 0 0 .5rem; font-size: 1.75rem; }
+.est-intro { max-width: var(--largura-texto); margin: 0 0 1.6rem; color: var(--tinta-suave); font-size: 1.08rem; }
+
+/* ---------- Rede de cuidados ---------- */
+.rede { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) 15rem; gap: 1.2rem; align-items: stretch; }
+
+/* Trilho do regresso: do topo até aos centros de saúde */
+.rede-regresso {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  margin: 1.5rem 0 7.5rem; border-left: 3px dashed var(--savana);
+}
+.rede-regresso::after {
+  content: ""; position: absolute; left: -9px; bottom: -4px;
+  border: 8px solid transparent; border-top: 11px solid var(--savana); border-bottom: 0;
+}
+.rede-regresso span {
+  position: absolute; left: .55rem; top: 50%; transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl; white-space: nowrap;
+  font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--savana);
+}
+
+.rede-niveis { display: flex; flex-direction: column; min-width: 0; }
+.nivel {
+  padding: 1.1rem 1.25rem; border-radius: var(--raio); background: var(--superficie);
+  border: 1px solid var(--linha); border-left: 6px solid var(--cor); box-shadow: var(--sombra);
+}
+.nivel p { margin: .35rem 0 0; }
+.nivel-3 { --cor: var(--terracota); --cor-fundo: var(--terracota-claro); }
+.nivel-2 { --cor: var(--ocre); --cor-fundo: var(--ocre-claro); }
+.nivel-1 { --cor: var(--petroleo); --cor-fundo: var(--petroleo-claro); }
+.nivel-topo { display: flex; align-items: center; gap: .85rem; }
+.nivel-topo h3 { margin: 0; font-size: 1.3rem; }
+.nivel-numero { margin: 0 !important; font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cor); }
+.nivel-icone {
+  flex-shrink: 0; width: 3rem; height: 3rem; padding: .45rem; border-radius: 12px;
+  background: var(--cor-fundo); color: var(--cor);
+}
+.nivel-lista { display: flex; flex-wrap: wrap; gap: .35rem; list-style: none; margin: .6rem 0 0; padding: 0; }
+.nivel-lista li { padding: .2rem .65rem; border-radius: 999px; background: var(--cor-fundo); color: var(--tinta); font-size: .9rem; font-weight: 600; }
+.nivel-pessoas { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin-top: .7rem !important; }
+.nivel-pessoas span { display: inline-flex; align-items: center; gap: .3rem; font-size: .9rem; font-weight: 600; color: var(--tinta-suave); }
+.nivel-pessoas svg { width: 1rem; height: 1rem; color: var(--cor); }
+
+.nivel-1-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+
+/* Ligações entre níveis: referência (sobe) e contra-referência (desce) */
+.ligacao { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: .9rem 0; }
+.seta { display: inline-flex; flex-direction: column; align-items: center; gap: .15rem; font-size: .8rem; font-weight: 700; color: var(--tinta-suave); }
+.seta::before { content: ""; display: block; width: 3px; height: 2.6rem; border-radius: 2px; }
+.seta-sobe { color: var(--terracota); flex-direction: column-reverse; }
+.seta-sobe::before { background: linear-gradient(to top, transparent, var(--terracota) 30%); clip-path: none; }
+.seta-desce { color: var(--savana); }
+.seta-desce::before { background: linear-gradient(to bottom, transparent, var(--savana) 30%); }
+.seta-sobe::after, .seta-desce::after { content: ""; border: 7px solid transparent; }
+.seta-sobe { position: relative; padding-top: .7rem; }
+.seta-sobe::after { position: absolute; top: 0; border-bottom: 9px solid var(--terracota); border-top: 0; }
+.seta-desce { position: relative; padding-bottom: .7rem; }
+.seta-desce::after { position: absolute; bottom: 0; border-top: 9px solid var(--savana); border-bottom: 0; }
+.ligacao-meio {
+  padding: .35rem .8rem; border-radius: 999px; background: var(--superficie); border: 1px dashed var(--petroleo);
+  color: var(--petroleo); font-size: .82rem; font-weight: 700; white-space: nowrap;
+}
+
+.comunidade { margin-top: 1rem; padding: .9rem 1rem; border-radius: var(--raio); background: var(--savana-claro); text-align: center; }
+.comunidade p { margin: .3rem 0 0; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--savana); }
+.comunidade-pessoas { display: flex; justify-content: center; flex-wrap: wrap; gap: .25rem; color: var(--savana); }
+.comunidade-pessoas svg { width: 1.3rem; height: 1.3rem; opacity: .85; }
+.comunidade-pessoas svg:nth-child(3n) { opacity: .55; }
+
+/* Universidade: atravessa os três níveis */
+.universidade {
+  --cor: var(--petroleo); --cor-fundo: var(--petroleo-claro);
+  display: flex; flex-direction: column; padding: 1.2rem; border-radius: var(--raio);
+  background: repeating-linear-gradient(135deg, var(--petroleo-claro) 0 14px, color-mix(in srgb, var(--petroleo-claro) 60%, var(--superficie)) 14px 28px);
+  border: 1.5px solid var(--petroleo);
+}
+.universidade h3 { margin: .7rem 0 .3rem; font-size: 1.3rem; }
+.universidade p { margin: 0; }
+/* Os três itens distribuem-se pela altura, ao lado dos três níveis */
+.universidade ul { flex: 1; list-style: none; margin: 0; padding: 1rem 0 5rem; display: flex; flex-direction: column; justify-content: space-between; gap: .4rem; }
+.universidade li {
+  padding: .35rem .7rem; border-radius: 8px; background: var(--superficie);
+  font-size: .88rem; font-weight: 600; border-left: 4px solid var(--petroleo);
+}
+
+/* ---------- O que liga os níveis ---------- */
+.ligam { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.ligam-cartao {
+  padding: 1.2rem 1.3rem; border-radius: var(--raio); background: var(--superficie);
+  border: 1px solid var(--linha); border-top: 5px solid var(--cor);
+}
+.ligam-cartao h3 { margin: 0 0 .5rem; font-size: 1.2rem; color: var(--cor); }
+.ligam-cartao p, .ligam-cartao ul { margin: 0; }
+.ligam-cartao ul { padding-left: 1.2rem; }
+.ligam-cartao li { margin: .25rem 0; }
+
+/* ---------- Participação dos atores ---------- */
+.participacao { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 1.2rem; }
+.part-niveis { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .8rem; }
+.part {
+  display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem 1.25rem;
+  border-radius: var(--raio); background: linear-gradient(100deg, var(--cor-fundo), var(--superficie) 60%);
+  border: 1px solid var(--linha);
+}
+.part h3 { margin: 0 0 .25rem; font-size: 1.2rem; }
+.part p { margin: 0; }
+.part-numero {
+  flex-shrink: 0; width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border-radius: 50%;
+  background: var(--cor); color: var(--superficie); font-family: var(--fonte-titulos); font-size: 1.3rem; font-weight: 600;
+}
+.part-funcoes { display: flex; flex-wrap: wrap; gap: .35rem; list-style: none; margin: .55rem 0 0; padding: 0; }
+.part-funcoes li { padding: .2rem .65rem; border-radius: 999px; background: var(--superficie); border: 1px solid var(--cor); font-size: .88rem; font-weight: 600; }
+.universidade-part { justify-content: center; }
+
+@media (max-width: 860px) {
+  .rede { grid-template-columns: 2rem minmax(0, 1fr); }
+  .rede .universidade { grid-column: 1 / -1; }
+  .rede .universidade ul { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; padding-bottom: 0; }
+  .participacao, .ligam { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .nivel-1-par { grid-template-columns: 1fr; }
+  .ligacao { gap: .5rem; }
+  .ligacao-meio { white-space: normal; text-align: center; font-size: .76rem; }
+  .rede-regresso { margin-bottom: 9rem; }
+}

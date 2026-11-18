@@ -1,0 +1,195 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/estrutura.css';
+---
+<Base titulo="Estrutura do projecto" descricao="Níveis de atenção, fluxo de pacientes, PCDT, comunicação entre níveis e participação dos atores no PEN Angola." secao="estrutura" rota="estrutura/">
+  <header class="cabecalho cor-petroleo">
+    <div class="cabecalho-dentro">
+      <p class="sobretitulo">Estrutura</p>
+      <h1>Estrutura do projecto</h1>
+      <p class="subtitulo">Os níveis de atenção, o fluxo de pacientes entre eles, os protocolos e a comunicação que os ligam, e os níveis de participação dos atores.</p>
+    </div>
+  </header>
+
+  <div class="pagina">
+    <!-- Ícones reutilizados -->
+    <svg width="0" height="0" class="so-definicoes" aria-hidden="true">
+      <defs>
+        <symbol id="ic-hospital" viewBox="0 0 48 48">
+          <path d="M6 42V16l18-9 18 9v26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M3 42h42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M21 17h6v5h5v6h-5v5h-6v-5h-5v-6h5z" fill="currentColor" />
+          <path d="M20 42v-6h8v6" fill="none" stroke="currentColor" stroke-width="2.5" />
+        </symbol>
+        <symbol id="ic-centro" viewBox="0 0 48 48">
+          <path d="M8 42V22L24 10l16 12v20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M4 42h40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M22 21h4v4h4v4h-4v4h-4v-4h-4v-4h4z" fill="currentColor" />
+        </symbol>
+        <symbol id="ic-pessoa" viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="4" fill="currentColor" />
+          <path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z" fill="currentColor" />
+        </symbol>
+        <symbol id="ic-universidade" viewBox="0 0 48 48">
+          <path d="M4 16L24 6l20 10z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" />
+          <path d="M9 20v16M17 20v16M31 20v16M39 20v16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+          <path d="M5 41h38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <section class="est-bloco" aria-labelledby="t-rede">
+      <h2 id="t-rede">Rede de cuidados</h2>
+      <p class="est-intro">A porta de entrada é sempre o centro de saúde na comunidade. Quando uma pessoa é referenciada para outro nível, volta sempre ao centro de saúde.</p>
+
+      <div class="rede">
+        <div class="rede-regresso" aria-hidden="true">
+          <span>Regresso ao centro de saúde</span>
+        </div>
+
+        <div class="rede-niveis">
+          <article class="nivel nivel-3">
+            <div class="nivel-topo">
+              <svg class="nivel-icone"><use href="#ic-hospital" /></svg>
+              <div>
+                <p class="nivel-numero">Nível terciário</p>
+                <h3>Hospital terciário</h3>
+              </div>
+            </div>
+            <p>Recebe pessoas com complicações, por exemplo:</p>
+            <ul class="nivel-lista">
+              <li>Pé diabético</li>
+              <li>Arritmias cardíacas e fibrilação auricular</li>
+              <li>Lesão valvular com indicação de troca de válvula</li>
+              <li>Colocação de pacemaker</li>
+            </ul>
+          </article>
+
+          <div class="ligacao" role="presentation">
+            <span class="seta seta-sobe">Referência</span>
+            <span class="ligacao-meio">PCDT · sistema de comunicação</span>
+            <span class="seta seta-desce">Contra-referência</span>
+          </div>
+
+          <article class="nivel nivel-2">
+            <div class="nivel-topo">
+              <svg class="nivel-icone"><use href="#ic-hospital" /></svg>
+              <div>
+                <p class="nivel-numero">Centro de referência</p>
+                <h3>Hospital municipal</h3>
+              </div>
+            </div>
+            <p>Médico e enfermeiro de referência, com mais equipamentos e capacidade para situações mais difíceis.</p>
+            <p class="nivel-pessoas">
+              <span><svg><use href="#ic-pessoa" /></svg>Médico</span>
+              <span><svg><use href="#ic-pessoa" /></svg>Enfermeiro</span>
+            </p>
+          </article>
+
+          <div class="ligacao" role="presentation">
+            <span class="seta seta-sobe">Referência</span>
+            <span class="ligacao-meio">PCDT · sistema de comunicação</span>
+            <span class="seta seta-desce">Contra-referência</span>
+          </div>
+
+          <div class="nivel-1-par">
+            {['Centro de saúde A', 'Centro de saúde B'].map((nome) => (
+              <article class="nivel nivel-1">
+                <div class="nivel-topo">
+                  <svg class="nivel-icone"><use href="#ic-centro" /></svg>
+                  <div>
+                    <p class="nivel-numero">Porta de entrada</p>
+                    <h3>{nome}</h3>
+                  </div>
+                </div>
+                <p class="nivel-pessoas">
+                  <span><svg><use href="#ic-pessoa" /></svg>Médicos</span>
+                  <span><svg><use href="#ic-pessoa" /></svg>Enfermeiros</span>
+                  <span><svg><use href="#ic-pessoa" /></svg>Outros profissionais</span>
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div class="comunidade">
+            <span class="comunidade-pessoas" aria-hidden="true">
+              {Array.from({ length: 14 }, () => <svg><use href="#ic-pessoa" /></svg>)}
+            </span>
+            <p>Comunidade</p>
+          </div>
+        </div>
+
+        <aside class="universidade">
+          <svg class="nivel-icone"><use href="#ic-universidade" /></svg>
+          <h3>Universidade</h3>
+          <p>Investigação nos três níveis de atenção.</p>
+          <ul>
+            <li>Hospital terciário</li>
+            <li>Hospital municipal</li>
+            <li>Centros de saúde</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="est-bloco" aria-labelledby="t-ligacoes">
+      <h2 id="t-ligacoes">O que liga os níveis</h2>
+      <div class="ligam">
+        <article class="ligam-cartao cor-petroleo">
+          <h3>Protocolos clínicos e directrizes terapêuticas (PCDT)</h3>
+          <ul>
+            <li>Protocolo de manejo</li>
+            <li>Orientações de conduta clínica</li>
+            <li>Regras de fluxo de pacientes entre os níveis</li>
+          </ul>
+        </article>
+        <article class="ligam-cartao cor-ocre">
+          <h3>Sistema de comunicação entre os níveis</h3>
+          <p>Liga o centro de saúde, o hospital municipal e o hospital terciário. As regras deste fluxo são definidas pelo PCDT.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="est-bloco" aria-labelledby="t-participacao">
+      <h2 id="t-participacao">Participação dos atores</h2>
+      <p class="est-intro">Em paralelo à rede de cuidados, os atores participam no projecto em três níveis.</p>
+
+      <div class="participacao">
+        <ol class="part-niveis">
+          <li class="part cor-savana">
+            <p class="part-numero">1</p>
+            <div>
+              <h3>Assistência directa</h3>
+              <p>Profissionais que prestam cuidados aos pacientes.</p>
+            </div>
+          </li>
+          <li class="part cor-ocre">
+            <p class="part-numero">2</p>
+            <div>
+              <h3>Gestão das unidades sanitárias</h3>
+              <p>Direcções e gestores dos centros de saúde e dos hospitais.</p>
+            </div>
+          </li>
+          <li class="part cor-terracota">
+            <p class="part-numero">3</p>
+            <div>
+              <h3>Implementação da inovação</h3>
+              <p>Pessoas envolvidas em:</p>
+              <ul class="part-funcoes">
+                <li>Desenho dos indicadores</li>
+                <li>Monitoria e avaliação</li>
+                <li>Desenvolvimento dos protocolos clínicos</li>
+                <li>Educação permanente</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+        <aside class="universidade universidade-part">
+          <svg class="nivel-icone"><use href="#ic-universidade" /></svg>
+          <h3>Universidade</h3>
+          <p>Papel de investigação no projecto, envolvida nos três níveis de atenção aos pacientes.</p>
+        </aside>
+      </div>
+    </section>
+  </div>
+</Base>
