@@ -10,20 +10,21 @@
 .rede-rolagem { overflow-x: auto; padding-bottom: .5rem; }
 .rede-rolagem:focus-visible { outline-offset: 4px; }
 .rede {
-  display: grid; min-width: 66rem;
-  grid-template-columns: 6.5rem minmax(14rem, 1.1fr) 8.5rem minmax(13rem, 1fr) 8.5rem minmax(15rem, 1.2fr);
+  display: grid; min-width: 58rem;
+  grid-template-columns: 5.2rem minmax(12rem, 1.2fr) 7.2rem minmax(11rem, 1fr) 7.2rem minmax(13rem, 1.15fr);
   grid-template-rows: auto 1fr; column-gap: .8rem; row-gap: .9rem; align-items: center;
 }
 
-/* Trilho do regresso: do hospital terciário (direita) até aos centros de saúde (esquerda) */
+/* Continuum de cuidado: dos centros de saúde ao hospital terciário, nos dois sentidos */
 .rede-regresso {
   grid-column: 2 / -1; grid-row: 1; position: relative; height: 2.2rem;
-  border-top: 3px dashed var(--savana); margin: 1.1rem 0 0 .6rem;
+  border-top: 3px dashed var(--savana); margin: 1.3rem 1rem 0 1rem;
 }
-.rede-regresso::before {
-  content: ""; position: absolute; left: -.7rem; top: -10px;
-  border: 8px solid transparent; border-right: 11px solid var(--savana); border-left: 0;
+.rede-regresso::before, .rede-regresso::after {
+  content: ""; position: absolute; top: -13.5px; border: 12px solid transparent;
 }
+.rede-regresso::before { left: -16px; border-right: 18px solid var(--savana); border-left: 0; }
+.rede-regresso::after { right: -16px; border-left: 18px solid var(--savana); border-right: 0; }
 .rede-regresso span {
   position: absolute; left: 50%; top: -1.05rem; transform: translateX(-50%);
   padding: .1rem .7rem; background: var(--papel); white-space: nowrap;
@@ -40,12 +41,12 @@
 .nivel-3 { --cor: var(--terracota); --cor-fundo: var(--terracota-claro); }
 .nivel-2 { --cor: var(--ocre); --cor-fundo: var(--ocre-claro); }
 .nivel-1 { --cor: var(--petroleo); --cor-fundo: var(--petroleo-claro); }
-.nivel-topo { display: flex; align-items: center; gap: .75rem; }
-.nivel-topo h3 { margin: 0; font-size: 1.15rem; }
-.nivel-1 .nivel-topo h3 { white-space: nowrap; }
+.nivel-topo { display: flex; align-items: flex-start; gap: .65rem; }
+.nivel-topo > div { min-width: 0; }
+.nivel-topo h3 { margin: 0; font-size: 1.08rem; line-height: 1.25; overflow-wrap: break-word; }
 .nivel-numero { margin: 0 !important; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cor); }
 .nivel-icone {
-  flex-shrink: 0; width: 2.8rem; height: 2.8rem; padding: .4rem; border-radius: 12px;
+  flex-shrink: 0; width: 2.4rem; height: 2.4rem; padding: .35rem; border-radius: 10px;
   background: var(--cor-fundo); color: var(--cor);
 }
 .nivel-lista { display: flex; flex-wrap: wrap; gap: .3rem; list-style: none; margin: .6rem 0 0; padding: 0; }
@@ -62,13 +63,13 @@
 .ligacao { display: flex; flex-direction: column; align-items: stretch; gap: .7rem; }
 .seta { position: relative; display: block; padding-bottom: .55rem; text-align: center; font-size: .78rem; font-weight: 700; }
 .seta::before { content: ""; position: absolute; left: .2rem; right: .2rem; bottom: 0; height: 3px; border-radius: 2px; }
-.seta::after { content: ""; position: absolute; bottom: -6px; border: 7.5px solid transparent; }
+.seta::after { content: ""; position: absolute; bottom: -8.5px; border: 10px solid transparent; }
 .seta-sobe { color: var(--terracota); }
 .seta-sobe::before { background: linear-gradient(to right, transparent, var(--terracota) 30%); }
-.seta-sobe::after { right: -6px; border-left: 10px solid var(--terracota); border-right: 0; }
+.seta-sobe::after { right: -12px; border-left: 15px solid var(--terracota); border-right: 0; }
 .seta-desce { color: var(--savana); }
 .seta-desce::before { background: linear-gradient(to left, transparent, var(--savana) 30%); }
-.seta-desce::after { left: -6px; border-right: 10px solid var(--savana); border-left: 0; }
+.seta-desce::after { left: -12px; border-right: 15px solid var(--savana); border-left: 0; }
 .ligacao-meio {
   padding: .35rem .5rem; border-radius: 10px; background: var(--superficie); border: 1px dashed var(--petroleo);
   color: var(--petroleo); font-size: .76rem; font-weight: 700; text-align: center; line-height: 1.3;
@@ -95,7 +96,7 @@
 .universidade p { margin: 0; }
 
 /* ---------- O que liga os níveis ---------- */
-.ligam { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.ligam { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .ligam-cartao {
   padding: 1.2rem 1.3rem; border-radius: var(--raio); background: var(--superficie);
   border: 1px solid var(--linha); border-top: 5px solid var(--cor);
