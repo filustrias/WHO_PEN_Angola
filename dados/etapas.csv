@@ -1,6 +1,6 @@
-nome,faixa,inicio,fim,descricao
-Preparação,etapa,2026-10,2026-10,Revisão do material prévio e diálogo com a DNSP e os gabinetes provinciais
-Desenho,etapa,2026-11-1,2027-01-2,"Visitas, prontidão, PCDT, solução tecnológica e pesquisa de implementação"
-Implementação,etapa,2027-02-2,2027-10,"Atendimento, formação continuada e supervisão formativa"
-Pesquisa de implementação,pesquisa,2026-11-1,2027-02-2,"CFIR e RE-AIM/PRISM, até aos critérios de monitoria, avaliação e aprendizagem"
-Monitoria e avaliação,pesquisa,2027-03-1,2027-10,RE-AIM/PRISM e CFIR como instrumentos de M&A
+numero,nome,curto,faixa,grupo,inicio,fim,descricao
+1,"Preparação, escolha dos cenários e atores",Preparação,etapa,,2026-10,2026-10,Revisão do material prévio e diálogo com a DNSP e os gabinetes provinciais
+2,Desenho da inovação,Desenho,etapa,Pesquisa de implementação,2026-11-1,2027-01-2,"Visitas e avaliação de prontidão, avaliação CFIR, elaboração dos PCDT e da solução tecnológica"
+3,Implementação da inovação,Implementação,etapa,Pesquisa de implementação,2027-02-2,2027-10,Atendimento nas unidades; RE-AIM/PRISM e CFIR como instrumentos de monitoria e avaliação
+4,"PCDT, medicina baseada em evidências",PCDT,continuo,,2026-10,2027-10,Do começo ao fim do projecto
+5,Actividades formativas para a assistência e a gestão do projecto,Formação,formacao,,2027-02-1,2027-10,"Formação inicial, formação continuada, supervisão formativa e formação de formadores"

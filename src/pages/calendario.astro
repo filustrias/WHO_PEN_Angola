@@ -1,10 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import '../styles/calendario.css';
-import { calendario, dataDaMeia, etapas, nomeMes, rotuloPeriodo } from '../dados';
+import { calendario, dataDaMeia, etapas, intervalo, nomeMes, rotuloPeriodo } from '../dados';
 
 const linhas = calendario();
-const listaEtapas = etapas();
+const blocos = etapas();
 
 // Eixo em quinzenas, do primeiro ao último período do calendário
 const inicioEixo = Math.min(...linhas.map((l) => l.periodo.meiaInicio));
@@ -13,10 +13,28 @@ const meias = fimEixo - inicioEixo + 1;
 const meses = Array.from({ length: Math.ceil(meias / 2) }, (_, k) => inicioEixo + k * 2);
 const col = (meiaIni: number, meiaFim: number) => `grid-column:${meiaIni - inicioEixo + 1} / ${meiaFim - inicioEixo + 2}`;
 
-const etapaDe = (meia: number) => listaEtapas.find((e) => e.faixa === 'etapa' && meia >= e.inicio.meiaInicio && meia <= e.fim.meiaFim);
+// Cada faixa é uma linha da linha do tempo; os blocos com grupo ficam dentro de uma moldura
+const faixas = [...new Set(blocos.map((b) => b.faixa))];
+const LINHA_INICIAL = 3; // linha 1: meses; linha 2: espaço para o nome dos grupos
+const linhaDe = (faixa: string) => LINHA_INICIAL + faixas.indexOf(faixa);
+const grupos = [...new Set(blocos.filter((b) => b.grupo).map((b) => b.grupo))].map((nome) => {
+  const membros = blocos.filter((b) => b.grupo === nome);
+  return {
+    nome,
+    inicio: Math.min(...membros.map((m) => m.inicio.meiaInicio)),
+    fim: Math.max(...membros.map((m) => m.fim.meiaFim)),
+    linha: linhaDe(membros[0].faixa),
+    membros,
+  };
+});
+const linhaMarcos = LINHA_INICIAL + faixas.length;
+
+const etapaDe = (meia: number) => blocos.find((e) => e.faixa === 'etapa' && meia >= e.inicio.meiaInicio && meia <= e.fim.meiaFim);
 const totalMarcos = linhas.reduce((n, l) => n + l.marcos.length, 0);
 const primeiro = linhas[0].periodo;
 const ultimo = linhas[linhas.length - 1].periodo;
+const posicaoMarco = (l: (typeof linhas)[number]) =>
+  ((l.periodo.meiaInicio - inicioEixo + (l.periodo.meiaFim - l.periodo.meiaInicio + 1) / 2) / meias) * 100;
 ---
 <Base titulo="Calendário" descricao="Calendário conjunto WHO PEN e PEN-Plus Angola, de Outubro de 2026 a Outubro de 2027." secao="calendario" rota="calendario/">
   <header class="cabecalho cor-ocre">
@@ -28,30 +46,9 @@ const ultimo = linhas[linhas.length - 1].periodo;
   </header>
 
   <div class="pagina">
-    <section class="cal-chaves" aria-label="Como ler o calendário">
-      <article class="chave cor-ocre">
-        <h2>Três etapas</h2>
-        <p><strong>Preparação</strong> em Outubro de 2026, <strong>desenho</strong> de Novembro de 2026 a Janeiro de 2027 e <strong>implementação</strong> a partir da 2.ª quinzena de Fevereiro de 2027.</p>
-      </article>
-      <article class="chave cor-petroleo">
-        <h2>Pesquisa de implementação</h2>
-        <p>CFIR e RE-AIM/PRISM concentram-se de Novembro a Fevereiro e terminam com os critérios de monitoria, avaliação e aprendizagem, antes do início do atendimento. Depois passam a instrumentos de M&amp;A.</p>
-      </article>
-      <article class="chave cor-savana">
-        <h2>Conjunta</h2>
-        <p>Reunião ou trabalho de campo comum aos dois pacotes, com financiamento e reporte separados.</p>
-      </article>
-      <article class="chave cor-terracota">
-        <h2>Três níveis de participação</h2>
-        <ol>
-          <li>Cuidado aos utentes nos centros de saúde e hospitais municipais</li>
-          <li>Gestão das unidades sanitárias</li>
-          <li>Gestão provincial e planeamento</li>
-        </ol>
-      </article>
-    </section>
+    <h2 class="cal-titulo">Blocos de actividades</h2>
 
-    <section class="linha-tempo" aria-label="Linha do tempo das etapas"
+    <section class="linha-tempo" aria-label="Linha do tempo dos blocos de actividades"
       data-inicio={dataDaMeia(inicioEixo)} data-fim={dataDaMeia(fimEixo + 1)}>
       <div class="lt-grelha" style={`--meses:${meias}`}>
         <div class="lt-meses" aria-hidden="true">
@@ -66,30 +63,75 @@ const ultimo = linhas[linhas.length - 1].periodo;
             );
           })}
         </div>
-        <p class="lt-faixa-rotulo" style="grid-row:2">Etapas</p>
-        {listaEtapas.filter((e) => e.faixa === 'etapa').map((e, k) => (
-          <div class:list={['lt-fase', `lt-cor-${k % 4}`, { 'lt-curta': e.fim.meiaFim - e.inicio.meiaInicio < 2 }]} style={`${col(e.inicio.meiaInicio, e.fim.meiaFim)};grid-row:3`}>
-            <strong>{e.nome}</strong>
-            <span>{e.descricao}</span>
+
+        {grupos.map((g) => (
+          <div class="lt-grupo" style={`${col(g.inicio, g.fim)};grid-row:2 / ${g.linha + 1}`}></div>
+          <p class="lt-grupo-nome" style={`${col(g.inicio, g.fim)};grid-row:2`}>{g.nome}</p>
+        ))}
+
+        {blocos.map((b) => (
+          <div class:list={['lt-bloco', `lt-bloco-${b.numero}`, { 'lt-no-grupo': b.grupo, 'lt-curta': b.fim.meiaFim - b.inicio.meiaInicio < 2 }]}
+            style={`${col(b.inicio.meiaInicio, b.fim.meiaFim)};grid-row:${linhaDe(b.faixa)}`}>
+            <span class="lt-num">{b.numero}</span>
+            <strong>{b.fim.meiaFim - b.inicio.meiaInicio < 2 ? b.curto : b.nome}</strong>
           </div>
         ))}
-        <p class="lt-faixa-rotulo" style="grid-row:4">Pesquisa de implementação</p>
-        {listaEtapas.filter((e) => e.faixa === 'pesquisa').map((e, k) => (
-          <div class={`lt-fase lt-fase-fina ${k === 0 ? 'lt-cor-1' : 'lt-cor-2'}`} style={`${col(e.inicio.meiaInicio, e.fim.meiaFim)};grid-row:5`}>
-            <strong>{e.nome}</strong>
-            <span>{e.descricao}</span>
-          </div>
-        ))}
-        <p class="lt-faixa-rotulo" style="grid-row:6">Marcos</p>
-        <div class="lt-marcos" style="grid-row:7;grid-column:1 / -1">
+
+        <p class="lt-faixa-rotulo" style={`grid-row:${linhaMarcos}`}>Marcos</p>
+        <div class="lt-marcos" style={`grid-row:${linhaMarcos + 1};grid-column:1 / -1`}>
           {linhas.filter((l) => l.marcos.length).map((l) => (
-            <a class="lt-marco" href={`#p-${l.periodo.codigo}`}
-              style={`left:calc(${((l.periodo.meiaInicio - inicioEixo + (l.periodo.meiaFim - l.periodo.meiaInicio + 1) / 2) / meias) * 100}% - .5rem)`}
-              aria-label={`${rotuloPeriodo(l.periodo)}: ${l.marcos.join('; ')}`}></a>
+            <button type="button" class="lt-marco" aria-expanded="false" aria-controls="lt-caixa"
+              style={`left:calc(${posicaoMarco(l)}% - .6rem)`}
+              data-quando={rotuloPeriodo(l.periodo)} data-marcos={JSON.stringify(l.marcos)}
+              aria-label={`Marcos de ${rotuloPeriodo(l.periodo)}`}></button>
           ))}
         </div>
         <div class="lt-hoje" hidden><span>Hoje</span></div>
       </div>
+    </section>
+    <div class="lt-caixa" id="lt-caixa" role="status" hidden></div>
+
+    <ol class="blocos">
+      {blocos.filter((b) => !b.grupo).slice(0, 1).map((b) => (
+        <li class={`bloco lt-bloco-${b.numero}`}>
+          <span class="lt-num">{b.numero}</span>
+          <div><h3>{b.nome}</h3><p class="bloco-quando">{intervalo(b.inicio, b.fim)}</p><p>{b.descricao}</p></div>
+        </li>
+      ))}
+      {grupos.map((g) => (
+        <li class="bloco-grupo">
+          <p class="bloco-grupo-nome">{g.nome}</p>
+          <ol>
+            {g.membros.map((b) => (
+              <li class={`bloco lt-bloco-${b.numero}`}>
+                <span class="lt-num">{b.numero}</span>
+                <div><h3>{b.nome}</h3><p class="bloco-quando">{intervalo(b.inicio, b.fim)}</p><p>{b.descricao}</p></div>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+      {blocos.filter((b) => !b.grupo).slice(1).map((b) => (
+        <li class={`bloco lt-bloco-${b.numero}`}>
+          <span class="lt-num">{b.numero}</span>
+          <div><h3>{b.nome}</h3><p class="bloco-quando">{intervalo(b.inicio, b.fim)}</p><p>{b.descricao}</p></div>
+        </li>
+      ))}
+    </ol>
+
+    <section class="cal-chaves" aria-label="Como ler o calendário">
+      <article class="chave cor-savana">
+        <h2>Conjunta</h2>
+        <p>Reunião ou trabalho de campo comum aos dois pacotes, com financiamento e reporte separados.</p>
+      </article>
+      <article class="chave cor-terracota">
+        <h2>Três níveis de participação</h2>
+        <ol>
+          <li>Cuidado aos utentes nos centros de saúde e hospitais municipais</li>
+          <li>Gestão das unidades sanitárias</li>
+          <li>Gestão provincial e planeamento</li>
+        </ol>
+      </article>
     </section>
 
     <div class="cal-barra">
@@ -117,7 +159,7 @@ const ultimo = linhas[linhas.length - 1].periodo;
             <header class="cal-data">
               <p class="cal-mes">{nomeMes(l.periodo.mes)} <span>{l.periodo.ano}</span></p>
               {l.periodo.quinzena > 0 && <p class="cal-quinzena">{l.periodo.quinzena}.ª quinzena</p>}
-              {etapa && <p class="cal-etapa">{etapa.nome}</p>}
+              {etapa && <p class="cal-etapa">{etapa.numero}. {etapa.curto}</p>}
               <p class="cal-agora-marca" hidden>Agora</p>
             </header>
             {[['pen', 'WHO PEN', l.pen], ['plus', 'PEN-Plus', l.plus]].map(([id, nome, lista]) => (
@@ -174,6 +216,50 @@ const ultimo = linhas[linhas.length - 1].periodo;
     const ir = document.querySelector<HTMLAnchorElement>('.cal-agora-ir');
     if (ir) { ir.href = `#${actual.id}`; ir.hidden = false; }
   }
+
+  // Caixa dos marcos: abre ao passar o rato, ao focar com o teclado ou ao clicar
+  const caixaMarco = document.querySelector<HTMLElement>('#lt-caixa');
+  const marcos = Array.from(document.querySelectorAll<HTMLButtonElement>('.lt-marco'));
+  let fixo: HTMLButtonElement | null = null;
+  const mostrar = (b: HTMLButtonElement) => {
+    if (!caixaMarco) return;
+    const lista: string[] = JSON.parse(b.dataset.marcos ?? '[]');
+    caixaMarco.innerHTML = '';
+    const quando = document.createElement('p');
+    quando.className = 'lt-caixa-quando';
+    quando.textContent = b.dataset.quando ?? '';
+    const ul = document.createElement('ul');
+    for (const m of lista) { const li = document.createElement('li'); li.textContent = m; ul.append(li); }
+    caixaMarco.append(quando, ul);
+    caixaMarco.hidden = false;
+    const r = b.getBoundingClientRect();
+    const largura = caixaMarco.offsetWidth;
+    const esquerda = Math.min(Math.max(r.left + r.width / 2 - largura / 2 + scrollX, scrollX + 8), scrollX + document.documentElement.clientWidth - largura - 8);
+    caixaMarco.style.left = `${esquerda}px`;
+    caixaMarco.style.top = `${r.bottom + scrollY + 10}px`;
+    caixaMarco.style.setProperty('--seta', `${r.left + r.width / 2 + scrollX - esquerda}px`);
+    marcos.forEach((x) => x.setAttribute('aria-expanded', String(x === b)));
+  };
+  const esconder = () => {
+    if (caixaMarco) caixaMarco.hidden = true;
+    marcos.forEach((x) => x.setAttribute('aria-expanded', 'false'));
+    fixo = null;
+  };
+  marcos.forEach((b) => {
+    b.addEventListener('mouseenter', () => { if (!fixo) mostrar(b); });
+    b.addEventListener('mouseleave', () => { if (!fixo) esconder(); });
+    b.addEventListener('focus', () => mostrar(b));
+    b.addEventListener('blur', () => { if (!fixo) esconder(); });
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (fixo === b) { esconder(); return; }
+      fixo = b;
+      mostrar(b);
+    });
+  });
+  document.addEventListener('click', (e) => { if (fixo && !caixaMarco?.contains(e.target as Node)) esconder(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') esconder(); });
+  document.querySelector('.linha-tempo')?.addEventListener('scroll', () => { if (!caixaMarco?.hidden) esconder(); });
 
   const caixa = document.querySelector<HTMLElement>('.calendario');
   document.querySelectorAll<HTMLButtonElement>('.cal-filtros button').forEach((b, _, todos) => {

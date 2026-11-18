@@ -88,15 +88,34 @@ export function calendario(): LinhaCalendario[] {
   return linhas;
 }
 
-export interface Etapa { nome: string; faixa: 'etapa' | 'pesquisa'; inicio: Periodo; fim: Periodo; descricao: string }
+export interface Etapa {
+  numero: number;
+  nome: string;
+  curto: string;
+  faixa: string; // "etapa" (sequenciais), "continuo", "formacao": cada faixa é uma linha na linha do tempo
+  grupo: string; // blocos com o mesmo grupo ficam dentro da mesma moldura
+  inicio: Periodo;
+  fim: Periodo;
+  descricao: string;
+}
 
-/** dados/etapas.csv: as etapas do projecto e as fases da pesquisa de implementação. */
+/** dados/etapas.csv: os blocos de actividades do calendário. */
 export function etapas(): Etapa[] {
   return lerCsv('etapas.csv').map((l) => ({
+    numero: Number(l.numero),
     nome: l.nome,
-    faixa: l.faixa === 'pesquisa' ? 'pesquisa' : 'etapa',
+    curto: l.curto || l.nome,
+    faixa: l.faixa || 'etapa',
+    grupo: l.grupo,
     inicio: periodo(l.inicio),
     fim: periodo(l.fim),
     descricao: l.descricao,
   }));
+}
+
+/** "Outubro de 2026", "Novembro de 2026 a Janeiro de 2027", "2.ª quinzena de Fevereiro de 2027 a Outubro de 2027" */
+export function intervalo(inicio: Periodo, fim: Periodo): string {
+  const a = `${inicio.quinzena === 2 ? '2.ª quinzena de ' : ''}${nomeMes(inicio.mes)} de ${inicio.ano}`;
+  const b = `${fim.quinzena === 1 ? '1.ª quinzena de ' : ''}${nomeMes(fim.mes)} de ${fim.ano}`;
+  return a === b ? a : `${a} a ${b}`;
 }
