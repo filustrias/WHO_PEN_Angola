@@ -42,28 +42,35 @@ import '../styles/estrutura.css';
       <h2 id="t-rede">Rede de cuidados</h2>
       <p class="est-intro">A porta de entrada é sempre o centro de saúde na comunidade. Quando uma pessoa é referenciada para outro nível, volta sempre ao centro de saúde.</p>
 
-      <div class="rede">
-        <div class="rede-regresso" aria-hidden="true">
-          <span>Regresso ao centro de saúde</span>
-        </div>
+      <div class="rede-rolagem" tabindex="0" role="region" aria-label="Diagrama da rede de cuidados">
+        <div class="rede">
+          <div class="rede-regresso" aria-hidden="true"><span>Regresso ao centro de saúde</span></div>
 
-        <div class="rede-niveis">
-          <article class="nivel nivel-3">
-            <div class="nivel-topo">
-              <svg class="nivel-icone"><use href="#ic-hospital" /></svg>
-              <div>
-                <p class="nivel-numero">Nível terciário</p>
-                <h3>Hospital terciário</h3>
-              </div>
-            </div>
-            <p>Recebe pessoas com complicações, por exemplo:</p>
-            <ul class="nivel-lista">
-              <li>Pé diabético</li>
-              <li>Arritmias cardíacas e fibrilação auricular</li>
-              <li>Lesão valvular com indicação de troca de válvula</li>
-              <li>Colocação de pacemaker</li>
-            </ul>
-          </article>
+          <div class="comunidade">
+            <span class="comunidade-pessoas" aria-hidden="true">
+              {Array.from({ length: 12 }, () => <svg><use href="#ic-pessoa" /></svg>)}
+            </span>
+            <p>Comunidade</p>
+          </div>
+
+          <div class="nivel-1-par">
+            {['Centro de saúde A', 'Centro de saúde B'].map((nome) => (
+              <article class="nivel nivel-1">
+                <div class="nivel-topo">
+                  <svg class="nivel-icone"><use href="#ic-centro" /></svg>
+                  <div>
+                    <p class="nivel-numero">Porta de entrada</p>
+                    <h3>{nome}</h3>
+                  </div>
+                </div>
+                <p class="nivel-pessoas">
+                  <span><svg><use href="#ic-pessoa" /></svg>Médicos</span>
+                  <span><svg><use href="#ic-pessoa" /></svg>Enfermeiros</span>
+                  <span><svg><use href="#ic-pessoa" /></svg>Outros profissionais</span>
+                </p>
+              </article>
+            ))}
+          </div>
 
           <div class="ligacao" role="presentation">
             <span class="seta seta-sobe">Referência</span>
@@ -92,43 +99,23 @@ import '../styles/estrutura.css';
             <span class="seta seta-desce">Contra-referência</span>
           </div>
 
-          <div class="nivel-1-par">
-            {['Centro de saúde A', 'Centro de saúde B'].map((nome) => (
-              <article class="nivel nivel-1">
-                <div class="nivel-topo">
-                  <svg class="nivel-icone"><use href="#ic-centro" /></svg>
-                  <div>
-                    <p class="nivel-numero">Porta de entrada</p>
-                    <h3>{nome}</h3>
-                  </div>
-                </div>
-                <p class="nivel-pessoas">
-                  <span><svg><use href="#ic-pessoa" /></svg>Médicos</span>
-                  <span><svg><use href="#ic-pessoa" /></svg>Enfermeiros</span>
-                  <span><svg><use href="#ic-pessoa" /></svg>Outros profissionais</span>
-                </p>
-              </article>
-            ))}
-          </div>
-
-          <div class="comunidade">
-            <span class="comunidade-pessoas" aria-hidden="true">
-              {Array.from({ length: 14 }, () => <svg><use href="#ic-pessoa" /></svg>)}
-            </span>
-            <p>Comunidade</p>
-          </div>
+          <article class="nivel nivel-3">
+            <div class="nivel-topo">
+              <svg class="nivel-icone"><use href="#ic-hospital" /></svg>
+              <div>
+                <p class="nivel-numero">Nível terciário</p>
+                <h3>Hospital terciário</h3>
+              </div>
+            </div>
+            <p>Recebe pessoas com complicações, por exemplo:</p>
+            <ul class="nivel-lista">
+              <li>Pé diabético</li>
+              <li>Arritmias cardíacas e fibrilação auricular</li>
+              <li>Lesão valvular com indicação de troca de válvula</li>
+              <li>Colocação de pacemaker</li>
+            </ul>
+          </article>
         </div>
-
-        <aside class="universidade">
-          <svg class="nivel-icone"><use href="#ic-universidade" /></svg>
-          <h3>Universidade</h3>
-          <p>Investigação nos três níveis de atenção.</p>
-          <ul>
-            <li>Hospital terciário</li>
-            <li>Hospital municipal</li>
-            <li>Centros de saúde</li>
-          </ul>
-        </aside>
       </div>
     </section>
 
@@ -160,7 +147,7 @@ import '../styles/estrutura.css';
             <p class="part-numero">1</p>
             <div>
               <h3>Assistência directa</h3>
-              <p>Profissionais que prestam cuidados aos pacientes.</p>
+              <p>Profissionais que prestam cuidados aos pacientes. Estes são os atores mais afectados pela inovação nesta fase do piloto. Mais até do que os próprios pacientes, neste primeiro momento.</p>
             </div>
           </li>
           <li class="part cor-ocre">
