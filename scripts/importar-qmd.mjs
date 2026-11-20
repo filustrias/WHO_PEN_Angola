@@ -35,6 +35,14 @@ const PAGINAS = [
     subtitulo: 'Documento de trabalho para discussão · versão 0.1, 16 de Novembro de 2026',
     limpar: [/^\*\*Projecto PEN Angola[^\n]*\n(?:Versão[^\n]*\n)?\s*---\s*\n/m],
     resumo: 'Coorte de rotina, avaliação do serviço e investigação de métodos mistos, alinhadas com o RE-AIM, o PRISM e o CFIR.' },
+  { origem: 'A1C.md', pasta: '..', ficheiro: 'hba1c.md', rota: 'recursos/hba1c/', secao: 'recursos', ordem: 1,
+    subtitulo: 'Documento de trabalho, 20 de Novembro de 2026',
+    limpar: [/^\d{1,2} de \w+ de \d{4}\s*\n/m],
+    resumo: 'Bases científicas, hemoglobina S, métodos de doseamento, equipamentos, custos e perguntas para o levantamento nos laboratórios.' },
+  { origem: 'ecocardio.md', pasta: '..', ficheiro: 'ecocardiografia.md', rota: 'recursos/ecocardiografia/', secao: 'recursos', ordem: 2,
+    subtitulo: 'Notas de trabalho, 20 de Novembro de 2026',
+    limpar: [/^Notas de trabalho[^\n]*\n/m, /^---\s*\n/m],
+    resumo: 'Equipamento, sonda cardíaca, lista mínima para o ecocardiograma, formação dos médicos e capacidade de uma máquina.' },
 ];
 
 const yaml = (v) => (typeof v === 'number' ? String(v) : JSON.stringify(v));

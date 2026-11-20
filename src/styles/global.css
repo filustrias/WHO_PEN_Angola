@@ -128,7 +128,7 @@ h1, h2, h3, h4 { font-family: var(--fonte-titulos); font-weight: 600; line-heigh
 }
 .topo-dentro {
   max-width: var(--largura-site); margin: 0 auto; padding: .6rem 1.25rem;
-  display: flex; align-items: center; gap: 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
 }
 .marca {
   display: flex; align-items: center; gap: .55rem; flex-shrink: 0;
@@ -141,8 +141,8 @@ h1, h2, h3, h4 { font-family: var(--fonte-titulos); font-weight: 600; line-heigh
 .menu::-webkit-scrollbar { display: none; }
 .menu ul { display: flex; gap: .15rem; list-style: none; margin: 0; padding: 0; white-space: nowrap; }
 .menu a {
-  display: block; padding: .45rem .7rem; border-radius: 999px;
-  color: var(--tinta-suave); font-weight: 600; font-size: .92rem; text-decoration: none;
+  display: block; padding: .45rem .55rem; border-radius: 999px;
+  color: var(--tinta-suave); font-weight: 600; font-size: .88rem; text-decoration: none;
 }
 .menu a:hover { color: var(--tinta); background: var(--ocre-claro); }
 .menu a[aria-current="page"] { color: var(--tinta); background: var(--petroleo-claro); }

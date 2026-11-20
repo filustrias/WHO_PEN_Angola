@@ -30,6 +30,8 @@ export const SECCOES: Seccao[] = [
     descricao: 'Literatura sobre o PEN e mapa de guias e materiais.' },
   { id: 'lacunas', rotulo: 'Protocolos e seguimento', cor: 'terracota',
     descricao: 'Das lacunas de cuidado aos protocolos clínicos e ao seguimento dos utentes.' },
+  { id: 'recursos', rotulo: 'Recursos necessários', cor: 'savana',
+    descricao: 'HbA1c nos laboratórios e ecocardiografia: métodos, equipamento, formação e custos.' },
 ];
 
 export interface ItemPagina {
