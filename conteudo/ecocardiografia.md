@@ -161,9 +161,74 @@ Estes valores são tectos teóricos, não metas.
 3. **Desgaste da sonda.** Com uso intenso, a vida útil de 3–5 anos tende para o limite inferior. No regime de 12 h × 7 dias convém prever uma sonda de reserva ou substituição ao 3.º ano.
 4. **Uso misto.** Se a mesma máquina fizer também obstetrícia e abdómen, a capacidade de eco é a fracção de horas atribuída ao eco. Blocos dedicados (por exemplo, eco de manhã e geral à tarde) são mais eficientes do que misturar exames ao longo do dia.
 
-### Próximo passo
+---
 
-Para converter isto em número de máquinas e de operadores por província falta a procura esperada: quantos doentes com insuficiência cardíaca, suspeita de cardiopatia reumática ou HTA com lesão de órgão-alvo chegariam a cada centro de referência (dados de referenciação ou de prevalência das unidades-piloto de Luanda e Huíla).
+## 7. Perguntas para as unidades: verificação dos ecógrafos existentes
+
+Pedir, sempre que possível, fotografias da etiqueta de identificação do aparelho, das sondas (conector e etiqueta) e do ecrã "Sistema / Acerca de" ou "System info", onde aparecem a versão de software e as opções instaladas. Muitas respostas obtêm-se com mais fiabilidade pela fotografia do que pela memória de quem responde.
+
+### Identificação do aparelho
+
+1. Qual é a marca e o modelo exacto do ecógrafo (ex.: GE Versana Balance, Mindray DC-70, Philips Affiniti 50)?
+2. Qual é o número de série e o ano de fabrico ou de instalação?
+3. Qual é a versão de software instalada?
+4. É um aparelho de consola (com rodas) ou portátil (laptop / tablet / sonda sem fios)?
+5. Como foi adquirido (compra do Estado, doação, projecto de parceiro) e quem é o proprietário?
+
+### Sondas disponíveis
+
+6. Que sondas existem? Indicar o nome/modelo de cada uma, tal como aparece na etiqueta (ex.: C1-6, L6-12, 3Sc, S4-1).
+7. Existe alguma sonda setorial / phased array (pequena, de superfície quadrada ou rectangular, usada para o coração)?
+8. Se existe, é de adulto ou pediátrica?
+9. Em que estado estão as sondas: cabo danificado, lente gasta ou rachada, zonas da imagem sem sinal (linhas escuras verticais)?
+10. Quantas portas para sondas tem o aparelho e quantas estão a funcionar?
+
+### Modos e opções de software
+
+11. No modo cardíaco, o aparelho tem Doppler contínuo (CW)? Aparece uma tecla ou opção "CW" no ecrã ou no painel?
+12. Tem Doppler tecidual (TDI, TVI ou "Tissue Doppler")?
+13. Tem modo M e Doppler pulsado com HPRF?
+14. Tem pré-definições (presets) cardíacas para adulto e para pediatria?
+15. Tem pacote de medidas e cálculos cardíacos (Simpson, equação de continuidade, PSAP, função diastólica) e gera relatório cardíaco?
+16. Tem imagem harmónica tecidual?
+17. Tem alguma opção avançada: strain, 3D/4D, contraste, sonda transesofágica?
+18. Se não tem CW, TDI ou pacote cardíaco, o fornecedor indicou que podem ser activados por licença?
+
+### ECG e acessórios
+
+19. O aparelho tem módulo de ECG? Existe cabo de ECG com eléctrodos?
+20. Quando se liga o ECG, o traçado aparece no ecrã durante o exame?
+21. Existe impressora, armazenamento USB ou outro meio de guardar imagens?
+
+### Armazenamento, exportação e conectividade
+
+22. O aparelho grava clips (vídeos) além de imagens estáticas? Quantos segundos ou ciclos por clip?
+23. Exporta em formato DICOM? Para pen USB, rede ou ambos?
+24. Está ligado a algum servidor de imagens (PACS) ou à rede da unidade?
+25. Qual é a capacidade de armazenamento interno e quanto está ocupado?
+
+### Utilização actual
+
+26. Que exames se fazem actualmente (obstetrícia, abdómen, partes moles, coração, outros)?
+27. Quantos exames se fazem por semana, em média? Existe registo?
+28. Quantos dias por semana e quantas horas por dia o aparelho funciona?
+29. Já se fizeram ecocardiogramas neste aparelho? Quem os fez e com que frequência?
+30. O aparelho é partilhado entre serviços (maternidade, urgência, medicina)?
+
+### Pessoal
+
+31. Quantas pessoas usam o aparelho e qual é a categoria profissional de cada uma (médico, técnico de imagiologia, enfermeiro)?
+32. Que formação em ecografia têm (curso formal, formação em serviço, nenhuma)? Alguém tem formação em ecocardiografia?
+33. Existe na unidade ou na província um cardiologista ou outro profissional que faça eco e possa supervisionar?
+
+### Manutenção e condições de funcionamento
+
+34. O aparelho está a funcionar neste momento? Se não, desde quando e qual é a avaria?
+35. Existe contrato de manutenção ou garantia? Com que empresa? Qual foi a última manutenção?
+36. Existe representante ou assistência técnica da marca em Angola?
+37. O aparelho está ligado a estabilizador de tensão e/ou UPS? Com que frequência há cortes de energia?
+38. A sala tem ar condicionado a funcionar?
+39. Há gel, papel e material de limpeza e desinfecção das sondas disponíveis de forma regular?
 
 ---
 
