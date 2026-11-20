@@ -73,22 +73,24 @@ Na prática, os dois efeitos levam no mesmo sentido: a HbA1c tende a subestimar 
 
 ## Métodos de doseamento
 
-Há seis princípios analíticos em uso. A HPLC de troca iónica é a referência. O imunoensaio turbidimétrico no analisador de bioquímica é o mais acessível quando o equipamento já existe.
+Há seis métodos em uso. Quatro são feitos em laboratório e dois existem como teste rápido no ponto de cuidado (POC, *point-of-care*), com cartucho individual e resultado durante a consulta. A cromatografia líquida de alta eficiência (HPLC) de troca iónica é a referência. O imunoensaio turbidimétrico no analisador de bioquímica é o mais acessível quando o equipamento já existe.
 
-| Método | Princípio | Onde corre | Mostra variantes | Vantagens | Desvantagens |
-| --- | --- | --- | --- | --- | --- |
-| HPLC de troca iónica | Separa as frações da hemoglobina pela carga | Analisador dedicado (ex.: Bio-Rad D-10, Tosoh G8) | Sim | Referência; alta precisão; identifica resultados não interpretáveis | Capital alto; técnico treinado; manutenção de colunas |
-| Imunoensaio turbidimétrico (látex) | Anticorpo contra a extremidade glicada da cadeia β | Analisador de bioquímica aberto | Não | Barato; alto débito; usa equipamento existente | Interferência variável de HbS e HbF; hemólise manual em muitos kits |
-| Enzimático | Protease liberta frutosil-valina, medida por oxidase | Analisador de bioquímica aberto | Não | Custo baixo; rápido | Pode subestimar (cerca de 0,3 % abaixo da HPLC num estudo indiano) |
-| Electroforese capilar | Separa as frações num campo eléctrico | Analisador dedicado (ex.: Sebia Capillarys) | Sim | Boa precisão; também rastreia hemoglobinopatias | Capital mais alto de todos; só para alto volume |
-| Afinidade por boronato | Ligação de toda a hemoglobina glicada ao ácido borónico | Sobretudo POC (Afinion 2, HemoCue HbA1c 501) | Não | Pouco afectada por variantes estruturais | Não identifica a variante |
-| Imunoensaio POC (turbidimetria ou fluorescência) | Anticorpo em cartucho individual | POC (DCA Vantage, A1CNow+, Ichroma, Finecare) | Não | Resultado na consulta; pouca formação | Custo por teste alto; desempenho variável entre marcas |
+| N.º | Método | Princípio | Equipamento | Teste rápido POC | Marcas comuns | Mostra variantes | Vantagens | Desvantagens |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Cromatografia líquida de alta eficiência (*High-Performance Liquid Chromatography*, HPLC) de troca iónica | Separa as frações da hemoglobina pela carga eléctrica | Analisador dedicado de laboratório | Não | Bio-Rad (D-10, Variant II), Tosoh (G8, G11), Arkray | Sim | Referência; alta precisão; identifica resultados não interpretáveis | Capital alto; técnico treinado; manutenção de colunas |
+| 2 | Imunoensaio turbidimétrico (látex ou inibição) | Anticorpo contra a extremidade glicada da cadeia β | Analisador de bioquímica aberto (laboratório) | Não | Reagentes Roche, Randox, Spinreact, Erba, Pointe Scientific | Não | Barato; alto débito; usa equipamento existente | Interferência variável de HbS e HbF; hemólise manual em muitos kits |
+| 3 | Enzimático | Protease liberta frutosil-valina, medida por oxidase | Analisador de bioquímica aberto (laboratório) | Não | Reagentes Abbott, Siemens | Não | Custo baixo; rápido | Pode subestimar (cerca de 0,3 % abaixo da HPLC num estudo indiano) |
+| 4 | Electroforese capilar | Separa as frações num campo eléctrico | Analisador dedicado de laboratório | Não | Sebia (Capillarys) | Sim | Boa precisão; também rastreia hemoglobinopatias | Capital mais alto de todos; só para alto volume |
+| 5 | Afinidade por boronato | Ligação de toda a hemoglobina glicada ao ácido borónico | Aparelho portátil com cartucho | Sim | Abbott (Afinion 2), HemoCue (HbA1c 501) | Não | Pouco afectada por variantes estruturais | Não identifica a variante; custo por teste mais alto que no laboratório |
+| 6 | Imunoensaio em cartucho (turbidimetria ou fluorescência) | Anticorpo em cartucho individual | Aparelho portátil com cartucho | Sim | Siemens (DCA Vantage), PTS (A1CNow+), Boditech (Ichroma), Wondfo (Finecare) | Não | Resultado na consulta; pouca formação | Custo por teste alto; desempenho variável entre marcas |
 
 ### Quais são os mais comuns
 
-Não há um censo global por método. Em valor de vendas, a HPLC representou cerca de 61 % do mercado de HbA1c em 2025 ([Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/hba1c-testing-market)). No controlo de qualidade externo dos EUA (CAP, 2022), o Tosoh G8 por HPLC era usado por 295 laboratórios e o DCA Vantage por 304 ([NGSP, CAP 2022](https://ngsp.org/CAP/CAP22a.pdf)).
+**No mundo.** Não há um censo global por método. Em valor de vendas, a HPLC representou cerca de 61 % do mercado de HbA1c em 2025 ([Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/hba1c-testing-market)). No controlo de qualidade externo dos EUA (CAP, 2022), o Tosoh G8 (HPLC) era usado por 295 laboratórios e o DCA Vantage (imunoensaio em cartucho, POC) por 304 ([NGSP, CAP 2022](https://ngsp.org/CAP/CAP22a.pdf)).
 
-Nos laboratórios de rotina de países de rendimento baixo e médio, é muito comum o imunoensaio turbidimétrico no analisador de bioquímica, porque o investimento adicional é quase nulo. Os aparelhos POC de imunofluorescência também são frequentes em África.
+**Em África.** Também não há um censo. O imunoensaio, de laboratório ou em cartucho, e a afinidade por boronato são descritos como os métodos mais usados na região ([Balungi et al., Pan African Medical Journal 2024](https://panafrican-med-journal.com/content/article/48/10/full)). O imunoensaio turbidimétrico domina nos laboratórios de rotina, porque usa o analisador de bioquímica já existente. A HPLC fica sobretudo nos hospitais de referência e nos laboratórios privados. Os aparelhos POC de imunofluorescência são frequentes em programas e unidades sem laboratório.
+
+Os dados africanos sobre a interferência do traço falciforme são contraditórios. No Uganda, o traço não alterou a relação entre HbA1c e glicemia em nenhum dos quatro métodos estudados ([Balungi et al.](https://panafrican-med-journal.com/content/article/48/10/full)). No Gana, um estudo encontrou desvio da imunoturbidimetria em relação à HPLC nos portadores do traço ([LabMedica, Korle Bu](https://mobile.labmedica.com/clinical-chem./articles/294812233/common-hba1c-assay-may-miss-diabetes-in-people-with-sickle-cell-trait.amp.html)). O comportamento depende do reagente concreto, o que reforça a necessidade de confirmar os dados do fabricante.
 
 ## Equipamentos e compatibilidade com reagentes
 
@@ -130,41 +132,44 @@ Um técnico que já opera o analisador de bioquímica consegue fazer HbA1c com u
 
 ## Estimativas de custo
 
-Para 1000 doentes com três testes por ano, acrescentar reagente aos analisadores existentes custa cerca de USD 7 000–14 000 por ano. Comprar três aparelhos custa entre USD 17 000 (POC HemoCue) e mais de USD 70 000 (HPLC) no primeiro ano.
+Para 1000 doentes com três testes por ano, acrescentar reagente imunoturbidimétrico aos analisadores existentes custa cerca de USD 7 000–14 000 por ano. Comprar três aparelhos custa entre USD 17 000 (POC de boronato HemoCue) e mais de USD 70 000 (HPLC) no primeiro ano.
 
-Todos os valores estão em dólares americanos, antes de frete, impostos e margem do distribuidor em Angola. Estimo que estes acrescentem 20–40 %. Os preços assinalados como estimativa não foram confirmados em catálogo e devem ser substituídos por cotações locais.
+Todos os valores estão em dólares americanos, antes de frete, impostos e margem do distribuidor em Angola. Estimo que estes acrescentem 20–40 %. Os preços assinalados como estimativa não foram confirmados em catálogo e devem ser substituídos por cotações locais. As tabelas seguem a numeração dos métodos da secção anterior.
 
 ### Preços de referência
 
-| Item | Equipamento (USD) | Custo por teste (USD) | Fonte |
-| --- | --- | --- | --- |
-| Reagente turbidimétrico em analisador de bioquímica existente | 0 | 2–4, com calibrador e controlos | Estimativa |
-| HemoCue HbA1c 501 (boronato, POC) | 1 738 com 200 cartuchos | 4,34 | [UNICEF, analisador](https://supply.unicef.org/s0001804.html); [UNICEF, cartuchos](https://sd-scat-prod.unicef.org/s0001805.html) |
-| Afinion 2 (boronato, POC) | 3 095 | 9,61 | [Preços de catálogo, EUA](https://files.constantcontact.com/d52d9fbc501/4ad9aacc-457a-490e-a8db-5028855d9a49.pdf) |
-| DCA Vantage (imunoensaio, POC) | 3 400–5 035 | 10,23 | [Tiger Medical](https://tigermedical.com/products/dca-vantage-diabetes-analyzer-sie5075us); [Fisher Scientific](https://www.fishersci.com/shop/products/siemens-healthcare-diagnostics-dca-vantage-analyzer-dca-vantage-analyzer/23312998) |
-| HPLC compacta (tipo Bio-Rad D-10) | cerca de 20 000 (estimativa; usados entre 4 600 e 20 000) | 3–6 (estimativa) | [Bimedis](https://uk.bimedis.com/a-item/hemoglobin-analyzers-bio-rad-d-10-1896160); [DOTmed](https://www.dotmed.com/listing/hemoglobinometer/bio-rad/d-10-hemoglobin-testing/4434974) |
-| HPLC de médio volume (Tosoh G8) | 41 483 | — | [Tiger Medical](https://tigermedical.com/products/g8-hplc-automated-glycohemoglobin-analyzer-tos0021560-90sl-oo) |
-| Analisador de bioquímica automático de bancada (tipo Spin XS) | 15 000–30 000 (estimativa) | 2–4 (estimativa) | Estimativa |
+| N.º | Método | Laboratório ou POC | Item | Equipamento (USD) | Custo por teste (USD) | Fonte |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | HPLC de troca iónica | Laboratório | HPLC compacta (tipo Bio-Rad D-10) | cerca de 20 000 (estimativa; usados entre 4 600 e 20 000) | 3–6 (estimativa) | [Bimedis](https://uk.bimedis.com/a-item/hemoglobin-analyzers-bio-rad-d-10-1896160); [DOTmed](https://www.dotmed.com/listing/hemoglobinometer/bio-rad/d-10-hemoglobin-testing/4434974) |
+| 1 | HPLC de troca iónica | Laboratório | HPLC de médio volume (Tosoh G8) | 41 483 | — | [Tiger Medical](https://tigermedical.com/products/g8-hplc-automated-glycohemoglobin-analyzer-tos0021560-90sl-oo) |
+| 2 | Imunoensaio turbidimétrico | Laboratório | Reagente em analisador de bioquímica existente | 0 | 2–4, com calibrador e controlos (estimativa) | Estimativa |
+| 2 | Imunoensaio turbidimétrico | Laboratório | Analisador de bioquímica novo (tipo Spin XS) + reagente | 15 000–30 000 (estimativa) | 2–4 (estimativa) | Estimativa |
+| 3 | Enzimático | Laboratório | Reagente em analisador de bioquímica existente | 0 | Sem preço de referência obtido | — |
+| 4 | Electroforese capilar | Laboratório | Sebia Capillarys | Sem preço de referência obtido; o mais alto dos seis | — | — |
+| 5 | Afinidade por boronato | POC | HemoCue HbA1c 501 | 1 738 com 200 cartuchos | 4,34 | [UNICEF, analisador](https://supply.unicef.org/s0001804.html); [UNICEF, cartuchos](https://sd-scat-prod.unicef.org/s0001805.html) |
+| 5 | Afinidade por boronato | POC | Afinion 2 | 3 095 | 9,61 | [Preços de catálogo, EUA](https://files.constantcontact.com/d52d9fbc501/4ad9aacc-457a-490e-a8db-5028855d9a49.pdf) |
+| 6 | Imunoensaio em cartucho | POC | DCA Vantage | 3 400–5 035 | 10,23 | [Tiger Medical](https://tigermedical.com/products/dca-vantage-diabetes-analyzer-sie5075us); [Fisher Scientific](https://www.fishersci.com/shop/products/siemens-healthcare-diagnostics-dca-vantage-analyzer-dca-vantage-analyzer/23312998) |
 
 ### Pressupostos do cálculo
 
 - 1000 doentes × 3 testes = 3000 testes de doentes por ano.
 - Métodos de laboratório: mais 15 % para calibrações, controlos e repetições, num total de 3450 testes.
 - POC: mais 10 % para controlos e falhas de cartucho, num total de 3300 testes.
-- No cenário B, os doentes repartem-se pelos três aparelhos. Não estão incluídos contratos de manutenção, peças nem formação.
+- Nos cenários com compra de equipamento, os doentes repartem-se pelos três aparelhos. Não estão incluídos contratos de manutenção, peças nem formação.
+- Os métodos 3 (enzimático) e 4 (electroforese capilar) ficam fora dos cenários por falta de preços de referência.
 
 ### Custo no primeiro ano
 
-| Cenário | Equipamento (USD) | Consumíveis num ano (USD) | Total no 1.º ano (USD) | Por doente/ano (USD) |
-| --- | --- | --- | --- | --- |
-| A. Só reagente nos analisadores existentes | 0 | 6 900–13 800 | 6 900–13 800 | 7–14 |
-| B1. 3 × HemoCue HbA1c 501 | 5 215 (inclui 600 cartuchos) | 11 729 (mais 2700 cartuchos) | 16 944 | 17 |
-| B2. 3 × Afinion 2 | 9 285 | 31 713 | 40 998 | 41 |
-| B3. 3 × DCA Vantage | 10 200–15 105 | 33 759 | 43 959–48 864 | 44–49 |
-| B4. 3 × HPLC compacta | 60 000 | 10 350–20 700 | 70 350–80 700 | 70–81 |
-| B5. 3 × analisador de bioquímica novo | 45 000–90 000 | 6 900–13 800 | 51 900–103 800 | 52–104 |
+| Cenário | N.º | Método | Laboratório ou POC | Equipamento (USD) | Consumíveis num ano (USD) | Total no 1.º ano (USD) | Por doente/ano (USD) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 3 × HPLC compacta | 1 | HPLC de troca iónica | Laboratório | 60 000 | 10 350–20 700 | 70 350–80 700 | 70–81 |
+| Só reagente nos analisadores existentes | 2 | Imunoensaio turbidimétrico | Laboratório | 0 | 6 900–13 800 | 6 900–13 800 | 7–14 |
+| 3 × analisador de bioquímica novo | 2 | Imunoensaio turbidimétrico | Laboratório | 45 000–90 000 | 6 900–13 800 | 51 900–103 800 | 52–104 |
+| 3 × HemoCue HbA1c 501 | 5 | Afinidade por boronato | POC | 5 215 (inclui 600 cartuchos) | 11 729 (mais 2700 cartuchos) | 16 944 | 17 |
+| 3 × Afinion 2 | 5 | Afinidade por boronato | POC | 9 285 | 31 713 | 40 998 | 41 |
+| 3 × DCA Vantage | 6 | Imunoensaio em cartucho | POC | 10 200–15 105 | 33 759 | 43 959–48 864 | 44–49 |
 
-A partir do segundo ano, o custo dos cenários B fica reduzido aos consumíveis e à manutenção. Nesse horizonte, a HPLC e o analisador de bioquímica ficam mais baratos por teste do que os POC de boronato ou imunoensaio. O HemoCue 501 mantém-se competitivo pelo preço UNICEF do cartucho.
+A partir do segundo ano, o custo dos cenários com compra de equipamento fica reduzido aos consumíveis e à manutenção. Nesse horizonte, a HPLC e o analisador de bioquímica ficam mais baratos por teste do que os POC. Entre os POC, o HemoCue 501 mantém-se competitivo pelo preço UNICEF do cartucho.
 
 ## Perguntas para o levantamento nos laboratórios
 
@@ -217,6 +222,8 @@ As respostas permitem classificar cada laboratório em três situações: pode a
 - [Brito et al. — Rastreio neonatal da doença falciforme em Angola](https://repositorio.ipl.pt/bitstreams/a0116d72-de13-4d0f-afbd-ce91501bc754/download)
 - [Resumo ASH 2023 — Rastreio neonatal no Hospital Materno Infantil Azancot de Menezes](https://www.citedrive.com/en/discovery/implementation-of-a-newborn-screening-for-sickle-cell-disease-at-the-hospital-materno-infantil-dr-manuel-pedro-azancot-de-menezes-angola)
 - [Revisão sobre doença falciforme na África subsariana, J Blood Med 2023](https://www.dovepress.com/a-critical-review-of-sickle-cell-disease-burden-and-challenges-in-sub--peer-reviewed-fulltext-article-JBM)
+- [Balungi et al. — Variantes de hemoglobina e métodos de HbA1c na África subsariana, Pan African Medical Journal 2024](https://panafrican-med-journal.com/content/article/48/10/full)
+- [LabMedica — Estudo do Korle Bu Teaching Hospital (Gana) sobre traço falciforme e imunoturbidimetria](https://mobile.labmedica.com/clinical-chem./articles/294812233/common-hba1c-assay-may-miss-diabetes-in-people-with-sickle-cell-trait.amp.html)
 - [Mordor Intelligence — Mercado de testes de HbA1c](https://www.mordorintelligence.com/industry-reports/hba1c-testing-market)
 - [UNICEF Supply — HemoCue HbA1c 501, analisador](https://supply.unicef.org/s0001804.html) e [cartuchos](https://sd-scat-prod.unicef.org/s0001805.html)
 - [Spinreact Spin XS — ficha técnica](https://medicalexpo.com/prod/spinreact/product-70160-999985.html)
