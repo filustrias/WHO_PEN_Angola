@@ -1,6 +1,6 @@
 ---
 titulo: "Lacunas de cuidado: da guia clínica ao indicador"
-subtitulo: "Implementação do PEN-OMS em Angola — piloto de Luanda e Huíla"
+subtitulo: "Implementação do PEN-OMS em Angola — piloto de Luanda e Icolo e Bengo"
 resumo: "Construir os protocolos e os indicadores do piloto a partir das lacunas de cuidado."
 secao: "lacunas"
 ordem: 1
@@ -23,7 +23,7 @@ A proposta deste documento é inverter a ordem habitual. Em vez de escrever o pr
 
 O ganho não é só de coerência. A magnitude da lacuna, multiplicada pela redução do risco absoluto da intervenção, estima quantos eventos (AVC, enfartes, amputações, cegueira) seriam evitáveis se a lacuna fosse fechada. Isso permite ordenar as recomendações do protocolo pelo seu rendimento em saúde, e não pela facilidade de as medir.
 
-A dimensão do problema é conhecida. Nos EUA, um estudo de referência mostrou que os adultos recebiam apenas cerca de 55% dos cuidados recomendados (McGlynn et al., 2003). Em 44 países de baixo e médio rendimento, entre as pessoas com hipertensão, 73,6% tinham alguma vez medido a tensão arterial, 39,2% tinham diagnóstico, 29,9% estavam em tratamento e apenas 10,3% estavam controladas (Geldsetzer et al., *Lancet* 2019). Esta cascata é, na prática, uma sequência de lacunas de cuidado encadeadas — e o piloto de Luanda e Huíla vai encontrar uma cascata semelhante nas suas quatro unidades.
+A dimensão do problema é conhecida. Nos EUA, um estudo de referência mostrou que os adultos recebiam apenas cerca de 55% dos cuidados recomendados (McGlynn et al., 2003). Em 44 países de baixo e médio rendimento, entre as pessoas com hipertensão, 73,6% tinham alguma vez medido a tensão arterial, 39,2% tinham diagnóstico, 29,9% estavam em tratamento e apenas 10,3% estavam controladas (Geldsetzer et al., *Lancet* 2019). Esta cascata é, na prática, uma sequência de lacunas de cuidado encadeadas — e o piloto de Luanda e Icolo e Bengo vai encontrar uma cascata semelhante nas suas quatro unidades.
 
 ## O que é uma lacuna de cuidado
 
@@ -168,7 +168,7 @@ Observações críticas para o piloto:
 - C4 é o indicador que importa, e está bem desenhado: ao contar os perdidos como não controlados (p. 13), funde a lacuna de controlo com a de continuidade e impede o «controlo entre os que aparecem». Mas, por isso mesmo, não diz onde está a perda. Deve ser sempre apresentado ao lado de O9 e, dentro dos presentes, da proporção com PA registada (lacuna de dados).
 - O1 é opcional para a OMS, mas para este projecto é central: sem o risco CV não há como aplicar a aritmética da secção anterior nem decidir quem recebe estatina e aspirina. Propõe-se tratá-lo como principal no piloto.
 - Falta à lista da OMS, para a HTA, um indicador de tratamento conforme protocolo (existe para a diabetes, O1 p. 30) e um indicador de intensificação em quem está fora da meta. A inércia clínica é, na literatura de cuidados primários, a lacuna que mais explica o mau controlo; recomenda-se acrescentar os dois (definições na secção anterior).
-- C1–C3 e O6 têm as unidades como denominador. Com 4 unidades no piloto, uma percentagem só pode valer 0, 25, 50, 75 ou 100%. Para Luanda e Huíla é mais útil reportar por unidade: dias de ruptura por classe terapêutica no trimestre e número de profissionais formados / em serviço.
+- C1–C3 e O6 têm as unidades como denominador. Com 4 unidades no piloto, uma percentagem só pode valer 0, 25, 50, 75 ou 100%. Para Luanda e Icolo e Bengo é mais útil reportar por unidade: dias de ruptura por classe terapêutica no trimestre e número de profissionais formados / em serviço.
 
 ### Diabetes (p. 24–44)
 
@@ -225,7 +225,7 @@ As lacunas de cuidado dão ao RE-AIM os seus números e ao CFIR as suas pergunta
 
 : Lacunas, RE-AIM e CFIR {#tbl-reaim}
 
-O PRISM acrescenta o contexto que explica a variação entre as quatro unidades: duas lacunas de controlo iguais em Luanda e na Huíla podem ter causas opostas (ruptura de stock numa, perda de seguimento por distância noutra). O painel de lacunas deve, por isso, ser lido unidade a unidade, com a classificação dados / oferta / adesão para cada lacuna aberta.
+O PRISM acrescenta o contexto que explica a variação entre as quatro unidades: duas lacunas de controlo iguais em Luanda e em Icolo e Bengo podem ter causas opostas (ruptura de stock numa, perda de seguimento por distância noutra). O painel de lacunas deve, por isso, ser lido unidade a unidade, com a classificação dados / oferta / adesão para cada lacuna aberta.
 
 ### O que muda no desenho do piloto
 
@@ -251,7 +251,7 @@ O PRISM acrescenta o contexto que explica a variação entre as quatro unidades:
 - OMS. *HEARTS technical package: evidence-based treatment protocols*, 2018 (WHO-NMH-NVI-18.2-eng.pdf). <https://apps.who.int/iris/bitstream/handle/10665/260421/WHO-NMH-NVI-18.2-eng.pdf>
 - OMS. *HEARTS-D: diagnosis and management of type 2 diabetes*, 2020 (WHO-UCN-NCD-20.1-eng.pdf).
 - OMS. *Pacote de intervenções essenciais contra as DNT para os cuidados de saúde primários (PEN)*, versão portuguesa (PT - WHO-PEN_Final_version).
-- Ministério da Saúde de Angola / OMS. TDR implementação piloto PEN WHO 2026 Luanda e Huíla; TDR Consultor internacional WHO PEN 2026.
+- Ministério da Saúde de Angola / OMS. TDR implementação piloto PEN WHO 2026; TDR Consultor internacional WHO PEN 2026.
 
 **Literatura**
 

@@ -14,7 +14,7 @@ origem: "reaim.qmd"
 Um protocolo de hipertensão pode funcionar muito bem num ensaio clínico e mudar pouco a vida de uma província. Basta que poucas unidades o usem, que poucas pessoas o recebam, ou que tudo pare quando o apoio externo termina. O RE-AIM ([Glasgow, Vogt e Boles, 1999](https://doi.org/10.2105/AJPH.89.9.1322)) olha para tudo isto em conjunto: **Reach** (alcance), **Effectiveness** (efectividade), **Adoption** (adopção), **Implementation** (implementação) e **Maintenance** (manutenção).
 
 ::: {.callout-note appearance="simple"}
-Os exemplos desta página são ilustrativos. O Centro de Saúde da Nova Esperança, no Lubango, as pessoas e os números foram inventados para ensinar os conceitos.
+Os exemplos desta página são ilustrativos. O Centro de Saúde da Nova Esperança, em Icolo e Bengo, as pessoas e os números foram inventados para ensinar os conceitos.
 :::
 
 ## O impacto multiplica-se {#sec-reaim-simulador}
@@ -112,7 +112,7 @@ Experimente comparar os cenários. Com tudo em 50%, levar a efectividade a 100% 
 
 ::: {.callout-exemplo}
 <div class="titulo">Na província</div>
-*Das 12 unidades convidadas na Huíla, 8 começaram: 67% de adopção. As 4 que ficaram de fora são as mais distantes, duas delas sem enfermeiro fixo. O resultado parece razoável, mas o PEN está a começar onde já havia mais condições. Saber porque estas 4 não começaram vale tanto como celebrar as outras 8.*
+*Das 12 unidades convidadas em Icolo e Bengo, 8 começaram: 67% de adopção. As 4 que ficaram de fora são as mais distantes, duas delas sem enfermeiro fixo. O resultado parece razoável, mas o PEN está a começar onde já havia mais condições. Saber porque estas 4 não começaram vale tanto como celebrar as outras 8.*
 :::
 
 ### I · Implementação

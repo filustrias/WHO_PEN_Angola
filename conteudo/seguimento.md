@@ -31,7 +31,7 @@ As revisões sistemáticas dos últimos 10 anos sobre coortes com dados de regis
 
 ### 1.3 Lacuna que orienta esta proposta
 
-Na África subsariana, os "dados do mundo real" vêm sobretudo de revisões retrospectivas de processos em papel em hospitais terciários. Há poucas coortes de rotina nos CSP. Também há poucos estudos que liguem o percurso do paciente às condições do serviço (stock de medicamentos, equipa, formação) e à experiência de pacientes e profissionais. Esta é a lacuna que o piloto PEN em Luanda e Huíla pode preencher, desde que o registo seja desenhado desde o início como coorte.
+Na África subsariana, os "dados do mundo real" vêm sobretudo de revisões retrospectivas de processos em papel em hospitais terciários. Há poucas coortes de rotina nos CSP. Também há poucos estudos que liguem o percurso do paciente às condições do serviço (stock de medicamentos, equipa, formação) e à experiência de pacientes e profissionais. Esta é a lacuna que o piloto PEN em Luanda e Icolo e Bengo pode preencher, desde que o registo seja desenhado desde o início como coorte.
 
 ---
 
@@ -225,7 +225,7 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    M["Município / Província<br/>Luanda, Huíla<br/>contexto externo — PRISM / CFIR"]
+    M["Município / Província<br/>Luanda, Icolo e Bengo<br/>contexto externo — PRISM / CFIR"]
     U["Unidade sanitária<br/>prontidão, stock, organização<br/>contexto interno — CFIR"]
     PF["Profissional<br/>formação, conhecimento,<br/>auto-eficácia, carga"]
     PC["Paciente<br/>idade, sexo, comorbilidade,<br/>distância, custos, adesão"]
@@ -354,7 +354,7 @@ Referências dos enquadramentos: RE-AIM [28], PRISM [29] e guia iPRISM [30], CFI
 ## 9. Questões em aberto para discussão
 
 1. **Suporte do registo.** O registo será feito em papel com digitação central, num *tracker* DHIS2, ou noutra plataforma? Isto determina a viabilidade dos painéis individuais.
-2. **Tamanho e duração.** Quantas unidades e quantos pacientes em Luanda e Huíla são necessários para estimar ICC e interacções entre níveis com precisão aceitável? É preciso fazer um cálculo de poder para modelos multinível.
+2. **Tamanho e duração.** Quantas unidades e quantos pacientes em Luanda e Icolo e Bengo são necessários para estimar ICC e interacções entre níveis com precisão aceitável? É preciso fazer um cálculo de poder para modelos multinível.
 3. **HbA1c.** A disponibilidade real nas unidades do piloto define se o controlo glicémico se mede por HbA1c ou por glicemia em jejum, com as limitações que isso implica.
 4. **Desfechos duros.** Sem ligação a registos hospitalares e de óbito, os eventos CV e a mortalidade vão ficar subestimados. É preciso avaliar a viabilidade de fazer essa ligação.
 5. **Custos.** Os custos para o paciente fazem parte do núcleo do inquérito ou de um estudo à parte?
