@@ -167,3 +167,10 @@
   .cal-marcos, .calendario[data-filtro="marcos"] .cal-marcos { grid-column: 1; }
   .cal-contagem { margin-left: 0; }
 }
+
+/* Dias que faltam para o marco */
+.lt-caixa-prazo {
+  margin: .55rem 0 0; padding-top: .45rem; border-top: 1px solid var(--linha);
+  font-size: .88rem; font-weight: 700; color: var(--terracota);
+}
+.lt-caixa-prazo.passado { color: var(--tinta-suave); font-weight: 600; }

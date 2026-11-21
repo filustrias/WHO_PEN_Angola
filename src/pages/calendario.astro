@@ -82,7 +82,7 @@ const posicaoMarco = (l: (typeof linhas)[number]) =>
           {linhas.filter((l) => l.marcos.length).map((l) => (
             <button type="button" class="lt-marco" aria-expanded="false" aria-controls="lt-caixa"
               style={`left:calc(${posicaoMarco(l)}% - .6rem)`}
-              data-quando={rotuloPeriodo(l.periodo)} data-marcos={JSON.stringify(l.marcos)}
+              data-quando={rotuloPeriodo(l.periodo)} data-marcos={JSON.stringify(l.marcos)} data-fim={l.periodo.fim}
               aria-label={`Marcos de ${rotuloPeriodo(l.periodo)}`}></button>
           ))}
         </div>
@@ -230,7 +230,22 @@ const posicaoMarco = (l: (typeof linhas)[number]) =>
     quando.textContent = b.dataset.quando ?? '';
     const ul = document.createElement('ul');
     for (const m of lista) { const li = document.createElement('li'); li.textContent = m; ul.append(li); }
-    caixaMarco.append(quando, ul);
+    // Dias que faltam até ao último dia do período do marco (fim da quinzena ou do mês)
+    const prazo = document.createElement('p');
+    prazo.className = 'lt-caixa-prazo';
+    if (b.dataset.fim) {
+      const ultimoDia = new Date(b.dataset.fim + 'T00:00:00');
+      ultimoDia.setDate(ultimoDia.getDate() - 1);
+      const hoje = new Date();
+      hoje.setHours(0, 0, 0, 0);
+      const dias = Math.round((ultimoDia.getTime() - hoje.getTime()) / 86400000);
+      const data = ultimoDia.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+      if (dias > 1) prazo.textContent = `Faltam ${dias} dias (até ${data})`;
+      else if (dias === 1) prazo.textContent = `Falta 1 dia (até ${data})`;
+      else if (dias === 0) prazo.textContent = `O prazo termina hoje (${data})`;
+      else { prazo.textContent = `Prazo terminado a ${data}`; prazo.classList.add('passado'); }
+    }
+    caixaMarco.append(quando, ul, prazo);
     caixaMarco.hidden = false;
     const r = b.getBoundingClientRect();
     const largura = caixaMarco.offsetWidth;
