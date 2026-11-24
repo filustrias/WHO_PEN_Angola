@@ -41,11 +41,12 @@ function construirMapas(base) {
     const texto = fs.readFileSync(path.join(PASTA, f), 'utf8');
     const fm = lerFrontmatter(texto);
     if (!fm.rota) continue;
-    const url = base + fm.rota.replace(/^\/+/, '');
+    // Páginas escondidas (oculto: true) não têm endereço: as ligações para elas ficam como texto simples
+    const url = fm.oculto === 'true' ? null : base + fm.rota.replace(/^\/+/, '');
     if (fm.id) ids[fm.id] = { url, titulo: fm.titulo };
     if (fm.origem) origens[fm.origem] = url;
     for (const m of texto.matchAll(/^#{1,6}\s+(.+?)\s*\{[^}]*#([\w-]+)[^}]*\}\s*$/gm)) {
-      ids[m[2]] = { url: `${url}#${m[2]}`, titulo: m[1].trim() };
+      ids[m[2]] = { url: url && `${url}#${m[2]}`, titulo: m[1].trim() };
     }
   }
   return { ids, origens };
@@ -127,16 +128,18 @@ function preprocessar(fonte, base, mapas) {
     // Etiquetas [texto]{.classe}
     linha = linha.replace(/\[([^\]\n]+)\]\{\.([\w-]+)\}/g, '<span class="$2">$1</span>');
 
-    // Ligações para ficheiros .qmd
-    linha = linha.replace(/\]\(([\w-]+\.qmd)(#[\w-]+)?\)/g, (todo, f, frag) => {
+    // Ligações para ficheiros .qmd (para uma página escondida, fica só o texto)
+    linha = linha.replace(/\[([^\]\n]+)\]\(([\w-]+\.qmd)(#[\w-]+)?\)/g, (todo, texto, f, frag) => {
+      if (!(f in mapas.origens)) return todo;
       const url = mapas.origens[f];
-      return url ? `](${url}${frag ?? ''})` : todo;
+      return url ? `[${texto}](${url}${frag ?? ''})` : texto;
     });
 
-    // Referências cruzadas @sec-x
+    // Referências cruzadas @sec-x (para uma página escondida, fica só o título)
     linha = linha.replace(/(^|[\s(\[—–-])@((?:sec|tbl|fig)-[\w-]+?)(?=[\s.,;:)\]!?]|$)/g, (todo, antes, id) => {
       const alvo = mapas.ids[id];
-      return alvo ? `${antes}[${alvo.titulo}](${alvo.url})` : todo;
+      if (!alvo) return todo;
+      return alvo.url ? `${antes}[${alvo.titulo}](${alvo.url})` : `${antes}${alvo.titulo}`;
     });
 
     saida.push(linha);

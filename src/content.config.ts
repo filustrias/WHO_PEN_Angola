@@ -13,6 +13,8 @@ const paginas = defineCollection({
     rota: z.string(),
     id: z.string().optional(),
     origem: z.string().optional(),
+    // true: a página não é gerada nem aparece no menu (o ficheiro fica guardado)
+    oculto: z.boolean().optional(),
   }),
 });
 

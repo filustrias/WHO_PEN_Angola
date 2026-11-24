@@ -5,7 +5,7 @@ import { SECCOES, caminho, paginasOrdenadas } from '../navegacao';
 
 export async function getStaticPaths() {
   const paginas = await getCollection('paginas');
-  return paginas.map((pagina) => ({
+  return paginas.filter((pagina) => !pagina.data.oculto).map((pagina) => ({
     params: { rota: pagina.data.rota.replace(/^\/+|\/+$/g, '') },
     props: { pagina },
   }));

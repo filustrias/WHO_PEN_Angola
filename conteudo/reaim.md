@@ -7,7 +7,10 @@ ordem: 1
 rota: "implementacao/reaim/"
 id: "sec-reaim"
 origem: "reaim.qmd"
+oculto: true
 ---
+
+<!-- Página escondida do site (oculto: true): será levada para outro projecto. -->
 
 <!-- Importado de quarto_book/reaim.qmd. Pode editar aqui; não é preciso voltar ao livro. -->
 

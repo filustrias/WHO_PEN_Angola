@@ -17,7 +17,7 @@ const PAGINAS = [
     resumo: 'O que é uma inovação em saúde e porque a inovação é o pacote, e não o elemento técnico isolado.' },
   { origem: 'ciencia-implementacao.qmd', ficheiro: 'investigacao.md', rota: 'ciencia/investigacao/', secao: 'ciencia', ordem: 3,
     resumo: 'Porque é preciso investigar a implementação, as definições e as fronteiras com os campos vizinhos.' },
-  { origem: 'reaim.qmd', ficheiro: 'reaim.md', rota: 'implementacao/reaim/', secao: 'implementacao', ordem: 1,
+  { origem: 'reaim.qmd', ficheiro: 'reaim.md', rota: 'implementacao/reaim/', secao: 'implementacao', ordem: 1, oculto: true,
     resumo: 'Alcance, efectividade, adopção, implementação e manutenção, com simulador e exercícios.' },
   { origem: 'cfir.qmd', ficheiro: 'cfir.md', rota: 'implementacao/cfir/', secao: 'implementacao', ordem: 2,
     resumo: 'Os cinco domínios e os constructos do CFIR, com mapa, pessoas e casos para explorar.' },
@@ -65,7 +65,7 @@ function importar(p) {
     return '';
   });
 
-  const fm = { titulo, subtitulo, resumo: p.resumo, secao: p.secao, ordem: p.ordem, rota: p.rota, id, origem: p.origem };
+  const fm = { titulo, subtitulo, resumo: p.resumo, secao: p.secao, ordem: p.ordem, rota: p.rota, id, origem: p.origem, oculto: p.oculto };
   const cabecalho = Object.entries(fm)
     .filter(([, v]) => v !== undefined)
     .map(([k, v]) => `${k}: ${yaml(v)}`)

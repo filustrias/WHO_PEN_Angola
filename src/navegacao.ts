@@ -49,7 +49,7 @@ const PAGINAS_PROPRIAS: ItemPagina[] = [
 
 /** Todas as páginas pela ordem de leitura: secção, depois campo "ordem". */
 export async function paginasOrdenadas(): Promise<ItemPagina[]> {
-  const md = await getCollection('paginas');
+  const md = (await getCollection('paginas')).filter((p) => !p.data.oculto);
   const todas: (ItemPagina & { ordem: number })[] = [
     ...md.map((p) => ({ titulo: p.data.titulo, rota: p.data.rota, secao: p.data.secao, resumo: p.data.resumo, ordem: p.data.ordem })),
     ...PAGINAS_PROPRIAS.map((p) => ({ ...p, ordem: 0 })),
